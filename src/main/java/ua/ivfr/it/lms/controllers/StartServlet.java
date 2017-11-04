@@ -1,5 +1,7 @@
 package ua.ivfr.it.lms.controllers;
 
+import ua.ivfr.it.lms.views.ViewStartServlet;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +20,10 @@ public class StartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out=response.getWriter();
         try {
-            out.print("<html><head><title>Myservlet</title></head><body>");
+            out.println(ViewStartServlet.getTopPage());
             out.write("<H1>Hello Servlet World!</H1>");
-            out.print("</body>");
-            out.print("</html>");
+            out.println(ViewStartServlet.getBootomPage());
+            ;
         }finally {
             out.close();
         }
