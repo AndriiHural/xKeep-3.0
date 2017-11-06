@@ -21,6 +21,7 @@ public class StartServlet extends HttpServlet {
         PrintWriter out=response.getWriter();
         try {
             out.println(ViewStartServlet.getTopPage());
+            out.println(ViewStartServlet.getMenu());
             out.write("<H1>Hello Servlet World!</H1>");
             out.println(ViewStartServlet.getBootomPage());
             ;
