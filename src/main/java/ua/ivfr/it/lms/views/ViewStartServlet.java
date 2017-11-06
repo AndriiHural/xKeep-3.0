@@ -49,6 +49,17 @@ public class ViewStartServlet {
                 "            <li><a href=\"#about\">Про сайт</a></li>\n" +
                 "            <li><a href=\"#contact\">Контакти</a></li>\n" +
                 "          </ul>\n" +
+                "           " +
+                "<div id=\"navbar\" class=\"navbar-collapse collapse\">\n" +
+                "          <ul class=\"nav navbar-nav navbar-right\">\n" +
+                "            <li><a href=\"#\">Налаштування</a></li>\n" +
+                "            <li><a href=\"/login\">Вхід</a></li>\n" +
+                "          </ul>\n" +
+                "          <form class=\"navbar-form navbar-right\">\n" +
+                "            <input type=\"text\" class=\"form-control\" placeholder=\"Пошук...\">\n" +
+                "          </form>\n" +
+                "        </div>" +
+
                 "        </div><!--/.nav-collapse -->\n" +
                 "      </div>\n" +
                 "    </nav>";

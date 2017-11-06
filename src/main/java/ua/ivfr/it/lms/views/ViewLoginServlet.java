@@ -15,7 +15,7 @@ public class ViewLoginServlet {
                 "            <input type=\"checkbox\" value=\"remember-me\"> Запам'ятати мене\n" +
                 "          </label>\n" +
                 "        </div>\n" +
-                "        <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Зареєструватись</button>\n" +
+                "        <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Вхід</button>\n" +
                 "      </form>\n" +
                 "\n" +
                 "    </div> <!-- /container -->";
