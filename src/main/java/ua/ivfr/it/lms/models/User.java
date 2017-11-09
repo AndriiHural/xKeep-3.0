@@ -6,74 +6,81 @@ import java.util.Arrays;
  * Клас який описує блокнот в якому уже будуть нотатки
  */
 public class User {
-    public class NoteBook {
-        long id_noteBook;                    //id блокноту
-        long in_user;        //id користувача (коли користувач надає доступ іншим користувачам щоб вони не мали права стерти твою закладку)
-        long[] id_note;        //спосок id нотаток цього болкнота
-        String noteBookTitle;              //заголовок нотатки
-        String noteBookDate;              //дата створення даної нотатки
 
-        public NoteBook() {
-        }
+    private long id;
+    private String name;
+    private String username;
+    private String password;
+    private String data_registered;
+    private boolean admin = false;
 
-        public NoteBook(long id_noteBook, long in_user, long[] id_note, String noteBookTitle, String noteBookDate) {
 
-            this.id_noteBook = id_noteBook;
-            this.in_user = in_user;
-            this.id_note = id_note;
-            this.noteBookTitle = noteBookTitle;
-            this.noteBookDate = noteBookDate;
-        }
+    public User(long id, String name, String username, String password, String data_registered) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.data_registered = data_registered;
+        this.admin = admin;
+    }
 
-        public long getId_noteBook() {
-            return id_noteBook;
-        }
+    public long getId() {
+        return id;
+    }
 
-        public void setId_noteBook(long id_noteBook) {
-            this.id_noteBook = id_noteBook;
-        }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-        public long getIn_user() {
-            return in_user;
-        }
+    public String getUsername() {
+        return username;
+    }
 
-        public void setIn_user(long in_user) {
-            this.in_user = in_user;
-        }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-        public long[] getId_note() {
-            return id_note;
-        }
+    public String getPassword() {
+        return password;
+    }
 
-        public void setId_note(long[] id_note) {
-            this.id_note = id_note;
-        }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        public String getNoteBookTitle() {
-            return noteBookTitle;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setNoteBookTitle(String noteBookTitle) {
-            this.noteBookTitle = noteBookTitle;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public String getNoteBookDate() {
-            return noteBookDate;
-        }
+    public String getData_registered_() {
+        return data_registered;
+    }
 
-        public void setNoteBookDate(String noteBookDate) {
-            this.noteBookDate = noteBookDate;
-        }
+    public void setData_registered_(String data_registered_) {
+        this.data_registered = data_registered_;
+    }
 
-        @Override
-        public String toString() {
-            return "NoteBook{" +
-                    "id_noteBook=" + id_noteBook +
-                    ", in_user=" + in_user +
-                    ", id_note=" + Arrays.toString(id_note) +
-                    ", noteBookTitle='" + noteBookTitle + '\'' +
-                    ", noteBookDate='" + noteBookDate + '\'' +
-                    '}';
-        }
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", data_registered_='" + data_registered + '\'' +
+                ", admin=" + admin +
+                '}';
     }
 }
