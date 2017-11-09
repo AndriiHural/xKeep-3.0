@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import ua.ivfr.it.lms.views.PathHtmlSingleton;
+
 @WebServlet(name = "StartServlet",urlPatterns = {"/"})
 public class StartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,15 +20,22 @@ public class StartServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out=response.getWriter();
-        try {
-            out.println(ViewStartServlet.getTopPage());
-            out.println(ViewStartServlet.getMenu());
-            out.write("<H1>Hello Servlet World!</H1>");
-            out.println(ViewStartServlet.getBootomPage());
-            ;
-        }finally {
-            out.close();
+        PrintWriter out = response.getWriter();
+        out.write("<H1>Hello Servlet World!</H1>");
+        out.println("<button type=\"button\" class=\"btn btn-primary\">Підготовлена</button>");
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        PathHtmlSingleton pathHTML = PathHtmlSingleton.getInstance();
+        if (pathHTML.getPath().equals("")) {
+            pathHTML.setPath(getServletContext().getRealPath("/html/"));
         }
+        pathHTML.setTop("top.html");
+        pathHTML.setMenu("menu.html");
+        pathHTML.setBottom("bottom.html");
+        pathHTML.setLogin("login.html");
+        System.out.println("Path\t" + pathHTML.getPath());
     }
 }
