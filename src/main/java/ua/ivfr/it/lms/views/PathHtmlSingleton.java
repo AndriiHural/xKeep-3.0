@@ -23,10 +23,21 @@ public class PathHtmlSingleton {
     private String menu;
     private String bottom;
     private String login;
+    private String registration;
+
+
+    public String getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(String registration) {
+        this.registration = getPartialHtml(registration);
+    }
 
     public String getLogin() {
         return login;
     }
+
 
     public void setLogin(String login) {
         this.login = getPartialHtml(login);

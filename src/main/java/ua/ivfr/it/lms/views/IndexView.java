@@ -28,4 +28,10 @@ public class IndexView {
     public void outLogin(PrintWriter out) {
         out.println(pathHtmlSingleton.getLogin());
     }
+
+    public void outRegistration(PrintWriter out) {
+        out.println(pathHtmlSingleton.getRegistration());
+    }
 }
+
+
