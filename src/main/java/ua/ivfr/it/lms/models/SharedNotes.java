@@ -5,7 +5,7 @@ package ua.ivfr.it.lms.models;
  */
 public class SharedNotes {
     private int id;         // id user
-    private int user_id;    //  id користувача
+    private int user_id;    // id користувача
     private int notes_id;   // id нотатки
 
     public SharedNotes(int id, int user_id, int notes_id) {
