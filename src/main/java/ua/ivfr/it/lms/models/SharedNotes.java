@@ -4,9 +4,9 @@ package ua.ivfr.it.lms.models;
  *  Клас який описує репост нотатки
  */
 public class SharedNotes {
-    int id;         // id user
-    int user_id;    //  id користувача
-    int notes_id;   // id нотатки
+    private int id;         // id user
+    private int user_id;    //  id користувача
+    private int notes_id;   // id нотатки
 
     public SharedNotes(int id, int user_id, int notes_id) {
         this.id = id;
