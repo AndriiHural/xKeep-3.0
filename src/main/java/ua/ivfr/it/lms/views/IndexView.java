@@ -32,6 +32,10 @@ public class IndexView {
     public void outRegistration(PrintWriter out) {
         out.println(pathHtmlSingleton.getRegistration());
     }
+
+    public void outUser(PrintWriter out) {
+        out.println(pathHtmlSingleton.getUser());
+    }
 }
 
 

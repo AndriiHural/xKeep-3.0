@@ -24,7 +24,16 @@ public class PathHtmlSingleton {
     private String bottom;
     private String login;
     private String registration;
+    private String user;
 
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = getPartialHtml(user);
+    }
 
     public String getRegistration() {
         return registration;

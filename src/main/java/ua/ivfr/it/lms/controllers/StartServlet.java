@@ -37,6 +37,7 @@ public class StartServlet extends HttpServlet {
         pathHTML.setBottom("bottom.html");
         pathHTML.setLogin("login.html");
         pathHTML.setRegistration("registration.html");
+        pathHTML.setUser("user.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }
