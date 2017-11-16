@@ -10,4 +10,3 @@ CREATE TABLE users
   UNIQUE (email)
 )
   COMMENT 'all users';
-

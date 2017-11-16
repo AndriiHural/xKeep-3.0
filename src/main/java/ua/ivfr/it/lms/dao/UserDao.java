@@ -13,4 +13,5 @@ public interface UserDao {
      * @return class User or null
      */
     User findUserByEmail(String email);
+    String allUser();
 }

@@ -8,20 +8,28 @@ import java.util.Arrays;
 public class User {
 
     private long id;
-    private String name;
-    private String username;
+    private String email;
     private String password;
+    private String name;
     private String data_registered;
-    private boolean admin = false;
+    private int role;
 
 
-    public User(long id, String name, String username, String password, String data_registered) {
+    public User(long id, String email, String password, String name, String data_registered, int role) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.name = name;
         this.data_registered = data_registered;
-        this.admin = admin;
+        this.role = role;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public long getId() {
@@ -32,12 +40,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -64,23 +72,16 @@ public class User {
         this.data_registered = data_registered_;
     }
 
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", data_registered_='" + data_registered + '\'' +
-                ", admin=" + admin +
+                ", data_registered='" + data_registered + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

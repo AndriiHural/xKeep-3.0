@@ -1,5 +1,6 @@
 package ua.ivfr.it.lms.controllers;
 
+import ua.ivfr.it.lms.dao.UserDaoImpl;
 import ua.ivfr.it.lms.models.User;
 import ua.ivfr.it.lms.views.IndexView;
 import ua.ivfr.it.lms.views.UserView;
@@ -23,6 +24,7 @@ public class UserServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         IndexView indexView = new IndexView();
         indexView.outUser(out);
+        UserDaoImpl userDao=new UserDaoImpl();
         switch (request.getPathInfo()) {
             case "/new":
                 out.write("<H1>New User!</H1>");
@@ -34,8 +36,12 @@ public class UserServlet extends HttpServlet {
                 out.write("<H1>Delete User!</H1>");
                 break;
             case "/view":
-                out.write("<H1>View User!</H1>");
+                out.write("<H1>"+userDao.allUser()+"</H1>");
+                break;
+            case "/seach":
+                out.write("<H1>"+userDao.findUserByEmail("sasha19970808@com.ua")+"</H1>");
                 break;
         }
+
     }
 }
