@@ -1,5 +1,8 @@
 package ua.ivfr.it.lms.controllers;
 
+import ua.ivfr.it.lms.dao.NoteDaoImpl;
+import ua.ivfr.it.lms.models.Note;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,20 +20,47 @@ public class NoteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        NoteDaoImpl note=new NoteDaoImpl();
 
         switch (request.getPathInfo()) {
             case "/new":
                 out.write("<H1>New Note!</H1>");
+                Note newNote=new Note(0,"New","Title2",0,null,"RED",1);
+                Note n=note.UpdateNote(newNote);
+                if(n!=null){
+                    out.println(n);
+                }else {
+                    out.println("Error New");
+                }
                 break;
             case "/edit":
                 out.write("<H1>Edit Note!</H1>");
+                Note editNote=new Note(2,"Edit","Title2",0,null,"RED",1);
+                Note n2=note.UpdateNote(editNote);
+                if(n2!=null){
+                    out.println(n2);
+                }else {
+                    out.println("Error Edit");
+                }
                 break;
 
             case "/delete":
                 out.write("<H1>Delete Note!</H1>");
+
+                if(note.deleteNote(2)){
+                    out.println("<H2>Delete successfully!</H2>");
+                }else {
+                    out.println("Error Delete");
+                }
                 break;
             case "/view":
                 out.write("<H1>View Note!</H1>");
+                Note note_view=note.viewNote(1);
+                if(note_view!=null){
+                    out.println("<H2>"+note_view+"</H2>");
+                }else {
+                    out.println("Error View");
+                }
                 break;
         }
 

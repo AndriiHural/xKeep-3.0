@@ -1,85 +1,120 @@
 package ua.ivfr.it.lms.models;
 
-/**
- * Клас який описує нотатку, зберігає дані нотатки,такі як текст, шрифт, розмір
- */
+import java.security.SecureRandom;
+
 public class Note {
-    long id_note;        //id нотатки
-    long in_user;        //id користувача (коли користувач надає доступ іншим користувачам щоб вони не мали право стерти твою закладку)
-    String noteTitle;    //заголовок нотатки
-    String noteText;     //текст нотатки
-    String noteColor;    //колір нотатки
-    String noteDate;     //дата створення даної нотатки
+    private int note_id;
+    private String note;
+    private String note_title;
+    private int is_archieve;
+    private String date_added;
+    private String color;
+    private int user_id;
 
-    public Note(long id_note, long in_user, String noteTitle, String noteText, String noteColor, String noteDate) {
-        this.id_note = id_note;
-        this.in_user = in_user;
-        this.noteTitle = noteTitle;
-        this.noteText = noteText;
-        this.noteColor = noteColor;
-        this.noteDate = noteDate;
-    }
-
-    public Note() {
-    }
-
-    public long getId_note() {
-        return id_note;
-    }
-
-    public void setId_note(long id_note) {
-        this.id_note = id_note;
-    }
-
-    public long getIn_user() {
-        return in_user;
-    }
-
-    public void setIn_user(long in_user) {
-        this.in_user = in_user;
-    }
-
-    public String getNoteTitle() {
-        return noteTitle;
-    }
-
-    public void setNoteTitle(String noteTitle) {
-        this.noteTitle = noteTitle;
-    }
-
-    public String getNoteText() {
-        return noteText;
-    }
-
-    public void setNoteText(String noteText) {
-        this.noteText = noteText;
-    }
-
-    public String getNoteColor() {
-        return noteColor;
-    }
-
-    public void setNoteColor(String noteColor) {
-        this.noteColor = noteColor;
-    }
-
-    public String getNoteDate() {
-        return noteDate;
-    }
-
-    public void setNoteDate(String noteDate) {
-        this.noteDate = noteDate;
+    public Note(int note_id, String note, String note_title, int is_archieve, String date_added, String color, int user_id) {
+        this.note_id = note_id;
+        this.note = note;
+        this.note_title = note_title;
+        this.is_archieve = is_archieve;
+        this.date_added = date_added;
+        this.color = color;
+        this.user_id = user_id;
     }
 
     @Override
     public String toString() {
         return "Note{" +
-                "id_note=" + id_note +
-                ", in_user=" + in_user +
-                ", noteTitle='" + noteTitle + '\'' +
-                ", noteText='" + noteText + '\'' +
-                ", noteColor='" + noteColor + '\'' +
-                ", noteDate='" + noteDate + '\'' +
+                "note_id=" + note_id +
+                ", note='" + note + '\'' +
+                ", note_title='" + note_title + '\'' +
+                ", is_archieve=" + is_archieve +
+                ", date_added='" + date_added + '\'' +
+                ", color='" + color + '\'' +
+                ", user_id=" + user_id +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Note note1 = (Note) o;
+
+        if (note_id != note1.note_id) return false;
+        if (is_archieve != note1.is_archieve) return false;
+        if (user_id != note1.user_id) return false;
+        if (note != null ? !note.equals(note1.note) : note1.note != null) return false;
+        if (note_title != null ? !note_title.equals(note1.note_title) : note1.note_title != null) return false;
+        if (date_added != null ? !date_added.equals(note1.date_added) : note1.date_added != null) return false;
+        return color != null ? color.equals(note1.color) : note1.color == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = note_id;
+        result = 31 * result + (note != null ? note.hashCode() : 0);
+        result = 31 * result + (note_title != null ? note_title.hashCode() : 0);
+        result = 31 * result + is_archieve;
+        result = 31 * result + (date_added != null ? date_added.hashCode() : 0);
+        result = 31 * result + (color != null ? color.hashCode() : 0);
+        result = 31 * result + user_id;
+        return result;
+    }
+
+    public int getNote_id() {
+        return note_id;
+    }
+
+    public void setNote_id(int note_id) {
+        this.note_id = note_id;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getNote_title() {
+        return note_title;
+    }
+
+    public void setNote_title(String note_title) {
+        this.note_title = note_title;
+    }
+
+    public int getIs_archieve() {
+        return is_archieve;
+    }
+
+    public void setIs_archieve(int is_archieve) {
+        this.is_archieve = is_archieve;
+    }
+
+    public String getDate_added() {
+        return date_added;
+    }
+
+    public void setDate_added(String date_added) {
+        this.date_added = date_added;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

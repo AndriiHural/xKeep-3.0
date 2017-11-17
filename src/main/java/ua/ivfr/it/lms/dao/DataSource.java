@@ -10,7 +10,9 @@ public class DataSource {
 
     Connection connection = null;
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL="jdbc:mysql://localhost:3306/xKeep?user=root&password=root";
+    //static final String DB_URL="jdbc:mysql://localhost:3306/xKeep?user=root&password=root";
+    //по іншому в мене вибиває купу помилок
+        static final String DB_URL = "jdbc:mysql://localhost/xkeep?autoReconnect=true&useSSL=false&user=root&password=root";
 
 
     public DataSource()
