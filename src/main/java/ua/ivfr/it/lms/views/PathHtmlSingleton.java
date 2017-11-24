@@ -25,7 +25,8 @@ public class PathHtmlSingleton {
     private String login;
     private String registration;
     private String user;
-
+    private String doshare;
+    private String postshare;
 
     public String getUser() {
         return user;
@@ -91,6 +92,22 @@ public class PathHtmlSingleton {
 
     public void setBottom(String bottom) {
         this.bottom = getPartialHtml(bottom);
+    }
+
+    public String getDoshare() {
+        return doshare;
+    }
+
+    public void setDoshare(String doshare) {
+        this.doshare = getPartialHtml(doshare);
+    }
+
+    public String getPostshare() {
+        return postshare;
+    }
+
+    public void setPostshare(String postshare) {
+        this.postshare = getPartialHtml(postshare);
     }
 
     /**

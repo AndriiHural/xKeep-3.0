@@ -36,6 +36,14 @@ public class IndexView {
     public void outUser(PrintWriter out) {
         out.println(pathHtmlSingleton.getUser());
     }
+
+    public void doShareNotes(PrintWriter out){
+        out.println(pathHtmlSingleton.getDoshare());
+    }
+
+    public void doPostShareNotes(PrintWriter out){
+        out.println(pathHtmlSingleton.getPostshare());
+    }
 }
 
 

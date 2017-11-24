@@ -14,6 +14,9 @@ public class User {
     private String data_registered;
     private int role;
 
+    public User( String email) {
+        this.email = email;
+    }
 
     public User(long id, String email, String password, String name, String data_registered, int role) {
         this.id = id;
