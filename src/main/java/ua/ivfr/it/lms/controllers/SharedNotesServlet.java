@@ -40,13 +40,18 @@ public class SharedNotesServlet extends HttpServlet {
                             //для кожного об'єкту класу User створюємо новий об'єкт класу String
                             .map(e -> "<p>" + e.toString() + "</p>")
                             //об'єднуємо всі об'єкти класу String в один об'єкт
-                            .collect(Collectors.joining(" "));
+                            .collect(Collectors.joining( " "));
                     //виводимо в браузер інформацію у вигляді HTML
                     //TODO вивід потрібно зробити в класах пакету view (вигляд)
                     out.write("<H1>List Users!</H1>");
-                    indexView.doShareNotes(out);
-                    out.println( row );
-                    indexView.doPostShareNotes(out);
+                   // for (int i=0;i<3;i++) {
+                        indexView.doShareNotes(out);
+                        out.println(row );
+                        indexView.doPostShareNotes(out);
+                    //}
+                   // indexView.doShareNotes(out);
+                  //  out.println( row );
+                    //indexView.doPostShareNotes(out);
                 } else {
                     out.println("<h3>Ви не маєте доступу, будь-ласка, залогінтесь!</h3>");
                 }
