@@ -47,21 +47,31 @@ public class IndexView {
     public void doPostShareNotes(PrintWriter out){
         out.println(pathHtmlSingleton.getPostshare());
     }
-
+    // виводить поле для вводу тексту нотатки/заголовка
+    // і список всіх створених користувачем нотаток
+    //TODO добавити вивід нотаток розшарених іншими користувачати
     public void outNotePage(PrintWriter out, List<Note> notes) {
-        String page = pathHtmlSingleton.getNote_page();
-        String note = pathHtmlSingleton.getNote();
+        out.println(pathHtmlSingleton.getNote_page());
+        //при створенні нотатки в посилання іконки "видалити(х)" передаємо пареметер
+        // id створеної нотатки
         for (Note ob_note : notes) {
-            //System.out.println("Before "+note);
-            note = note.replace("setcolor", "1");
-            note = note.replace("Text_Content", ob_note.getNote());
-            //System.out.println("After "+note);
-            System.out.println("Before "+page);
-            page=page.replace("<!--newNote-->", note);
-            System.out.println("After "+page);
+            //TODO bg-note-? створити класи для кожного кольру
+            out.println("<div id=replaceID class=\"col-xs-4  col-md-3 col-lg-3 col-sm-12 note-merg\">\n" +
+                    "    <div class=\"bg-note-1 note-size remove-hover\">\n" +
+                    "        <a id=remove-item href=\"/note/delete?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
+                    "        <a href=\"#\">\n" +
+                    "            <h2>Title #1 "+ob_note.getNote_title()+"</h2>\n" +
+                    "            <p>"+ob_note.getNote()+"</p>\n" +
+                    "        </a>\n" +
+                    "\n" +
+                    "    </div>\n" +
+                    "</div>");
         }
+        out.println("</div>" +
+                "</div><!--/body note-page -->");
 
-        out.println(page);
+
+
     }
 }
 

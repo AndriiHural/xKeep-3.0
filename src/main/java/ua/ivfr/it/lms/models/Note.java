@@ -1,9 +1,7 @@
 package ua.ivfr.it.lms.models;
 
-import java.security.SecureRandom;
-
 public class Note {
-    private int note_id;
+    private int id;
     private String note;
     private String note_title;
     private int is_archieve;
@@ -12,7 +10,7 @@ public class Note {
     private int user_id;
 
     public Note(int note_id, String note, String note_title, int is_archieve, String date_added, String color, int user_id) {
-        this.note_id = note_id;
+        this.id = note_id;
         this.note = note;
         this.note_title = note_title;
         this.is_archieve = is_archieve;
@@ -24,7 +22,7 @@ public class Note {
     @Override
     public String toString() {
         return "Note{" +
-                "note_id=" + note_id +
+                "id=" + id +
                 ", note='" + note + '\'' +
                 ", note_title='" + note_title + '\'' +
                 ", is_archieve=" + is_archieve +
@@ -41,7 +39,7 @@ public class Note {
 
         Note note1 = (Note) o;
 
-        if (note_id != note1.note_id) return false;
+        if (id != note1.id) return false;
         if (is_archieve != note1.is_archieve) return false;
         if (user_id != note1.user_id) return false;
         if (note != null ? !note.equals(note1.note) : note1.note != null) return false;
@@ -52,7 +50,7 @@ public class Note {
 
     @Override
     public int hashCode() {
-        int result = note_id;
+        int result = id;
         result = 31 * result + (note != null ? note.hashCode() : 0);
         result = 31 * result + (note_title != null ? note_title.hashCode() : 0);
         result = 31 * result + is_archieve;
@@ -62,12 +60,12 @@ public class Note {
         return result;
     }
 
-    public int getNote_id() {
-        return note_id;
+    public int getId() {
+        return id;
     }
 
-    public void setNote_id(int note_id) {
-        this.note_id = note_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNote() {

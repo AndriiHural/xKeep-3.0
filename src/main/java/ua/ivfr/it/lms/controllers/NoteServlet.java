@@ -21,16 +21,18 @@ public class NoteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
         HttpSession session = request.getSession();
+
         String fieldNote = request.getParameter("fieldNote");
         User user = (User) session.getAttribute("user");
-        NoteDaoImpl noteDao = new NoteDaoImpl();
-        Note note = noteDao.UpdateNote(new Note(
-                0, fieldNote, "Title2", 0, null, "RED", (int) user.getId()
-        ));
-        response.sendRedirect("/note/");
 
+        NoteDaoImpl noteDao = new NoteDaoImpl();
+        // створення нової закладки при натисканні на кнопку New
+        noteDao.UpdateNote(new Note(
+                0, fieldNote, "Title2",
+                0, null, "RED", (int) user.getId()
+                ));
+        response.sendRedirect("/note/");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,13 +63,9 @@ public class NoteServlet extends HttpServlet {
                 break;
 
             case "/delete":
-                out.write("<H1>Delete Note!</H1>");
-
-                if (note.deleteNote(2)) {
-                    out.println("<H2>Delete successfully!</H2>");
-                } else {
-                    out.println("Error Delete");
-                }
+                int id= Integer.parseInt(request.getParameter("id"));
+                note.deleteNote(id);
+                response.sendRedirect("/note/");
                 break;
             case "/view":
                 out.write("<H1>View Note!</H1>");
