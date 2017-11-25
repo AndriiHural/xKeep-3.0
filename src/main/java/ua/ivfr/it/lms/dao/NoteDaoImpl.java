@@ -5,6 +5,8 @@ import ua.ivfr.it.lms.models.Note;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Клас що реалізує методи інтерфейсу NoteDao
@@ -74,14 +76,15 @@ public class NoteDaoImpl implements NoteDao {
     }
 
     @Override
-    public Note viewNote(int note_id) {
+    public ArrayList<Note> viewNote(int user_id) {
         DataSource dataSource = new DataSource();
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE id=1;");
+             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE user_id="+user_id+";");
         ) {
+            ArrayList<Note> notes=new ArrayList<>();
             Note note=null;
-            if (rs2.next()) {
+            while (rs2.next()) {
                 note = new Note(
                         rs2.getInt("id"),
                         rs2.getString("note"),
@@ -91,8 +94,10 @@ public class NoteDaoImpl implements NoteDao {
                         rs2.getString("color"),
                         rs2.getInt("user_id")
                 );
+                notes.add(note);
+                note=null;
             }
-            return note;
+            return notes;
         } catch (SQLException e) {
             e.printStackTrace();
         }

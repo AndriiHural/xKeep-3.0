@@ -1,0 +1,51 @@
+.test{
+    background-color: #2b542c;
+}
+.fild-marg{
+    margin-bottom: 10px;
+}
+.bg-note-1{
+    background: #c59cff;
+
+
+}
+.note-size {
+    height:200px;
+    width:100%;
+    padding: 10px;
+    position: relative;
+}
+.note-merg{
+    margin:10px 10px;
+    padding: 0px 0px;
+    height:200px;
+    width:300px;
+    float: left;
+}
+.bg-note-2{
+    background:#cfc;
+}
+.bg-note-3{
+    background:#ccf;
+}
+#remove-item{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: none;
+}
+.remove-hover:hover #remove-item{
+    display: block;
+}
+.row-margen{
+
+}
+h2{
+    padding: 10px 10px;
+    margin: 0px;
+}
+.conteiner-width{
+    margin: 0;
+    width: auto;
+
+}
