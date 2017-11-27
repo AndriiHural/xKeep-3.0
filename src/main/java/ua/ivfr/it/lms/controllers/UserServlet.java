@@ -35,7 +35,6 @@ public class UserServlet extends HttpServlet {
 
 
         IndexView indexView = new IndexView();
-        indexView.outUser(out);
         UserDaoImpl userDao=new UserDaoImpl();
 
 
