@@ -40,15 +40,22 @@ public class SharedNotesServlet extends HttpServlet {
                     //обробляємо отриманий набір об'єктів класу User через агрегатні операції
                     String row = sharedNotesUserDao.getUsersByNoteId(1).stream()
                             //для кожного об'єкту класу User створюємо новий об'єкт класу String
-                            .map(e -> "<p>" + e.toString() + "</p>")
+                            .map(e -> "<div id=replaceID class=\"col-xs-4  col-md-3 col-lg-3 col-sm-12 \">\n" +
+                                    "    <div class=\"bg-note-1 note-size remove-hover\">\n" +
+                                    "        <a href=\"#\">\n" +
+                                    "            <p>"+ e.getName()+"</p>\n" +
+                                    "        </a>\n" +
+                                    "\n" +
+                                    "    </div>\n" +
+                                    "</div>")
                             //об'єднуємо всі об'єкти класу String в один об'єкт
                             .collect(Collectors.joining(" "));
                     //виводимо в браузер інформацію у вигляді HTML
                     //TODO вивід потрібно зробити в класах пакету view (вигляд)
                     out.write("<H1>List Users!</H1>");
-                    indexView.doShareNotes(out);
-                    out.println( row );
-                    indexView.doPostShareNotes(out);
+                    //indexView.doShareNotes(out);
+                    out.println(row);
+                   // indexView.doPostShareNotes(out);
                 } else {
                     out.println("<h3>Ви не маєте доступу, будь-ласка, залогінтесь!</h3>");
                 }

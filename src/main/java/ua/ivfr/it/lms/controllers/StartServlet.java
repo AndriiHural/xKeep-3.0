@@ -49,6 +49,8 @@ public class StartServlet extends HttpServlet {
         pathHTML.setUser("user.html");
         pathHTML.setNote_page("notePage.html");
         pathHTML.setNote("note.html");
+        pathHTML.setDoshare("doshare.html");
+        pathHTML.setPostshare("postshare.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }
