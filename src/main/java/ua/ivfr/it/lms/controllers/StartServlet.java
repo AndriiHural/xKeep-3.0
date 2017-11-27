@@ -1,18 +1,19 @@
 package ua.ivfr.it.lms.controllers;
 
-import ua.ivfr.it.lms.views.ViewStartServlet;
+import ua.ivfr.it.lms.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import ua.ivfr.it.lms.views.PathHtmlSingleton;
 
-@WebServlet(name = "StartServlet",urlPatterns = {"/"})
+@WebServlet(name = "StartServlet", urlPatterns = {"/"})
 public class StartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,8 +22,15 @@ public class StartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.write("<H1>Hello Servlet World!</H1>");
-        out.println("<button type=\"button\" class=\"btn btn-primary\">Підготовлена</button>");
+
+        HttpSession session = request.getSession();
+
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            out.write("<H1>Ввійдіть або зареєструйтесь</H1>");
+        }else {
+            out.write("<h2>You "+user.toString()+"</h2>");
+        }
     }
 
     @Override
@@ -38,6 +46,10 @@ public class StartServlet extends HttpServlet {
         pathHTML.setLogin("login.html");
         pathHTML.setRegistration("registration.html");
         pathHTML.setUser("user.html");
+        pathHTML.setNote_page("notePage.html");
+        pathHTML.setNote("note.html");
+        pathHTML.setDoshare("doshare.html");
+        pathHTML.setPostshare("postshare.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }
