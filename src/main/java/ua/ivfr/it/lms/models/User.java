@@ -85,6 +85,6 @@ public class User {
                 ", name='" + name + '\'' +
                 ", data_registered='" + data_registered + '\'' +
                 ", role=" + role +
-                '}';
+                "}";
     }
 }

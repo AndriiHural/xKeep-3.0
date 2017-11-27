@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 /**
  * Головний фільтр для виводу статичних частин html сторінки
  */
-@WebFilter(filterName = "IndexFilter", value = {"/", "/login", "/user/*", "/registration","/note/*","/shared-notes"})
+@WebFilter(filterName = "IndexFilter", value = {"/", "/login", "/user/*", "/register","/note/*","/shared-notes"})
 public class IndexFilter implements Filter {
     public void destroy() {
     }
