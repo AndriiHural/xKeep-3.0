@@ -28,6 +28,10 @@ public class IndexView {
         out.println(pathHtmlSingleton.getMenu());
     }
 
+    public void outMenu_Login(PrintWriter out) {
+        out.println(pathHtmlSingleton.getMenu_login());
+    }
+
     public void outLogin(PrintWriter out) {
         out.println(pathHtmlSingleton.getLogin());
     }

@@ -1,5 +1,6 @@
 package ua.ivfr.it.lms.controllers;
 
+import ua.ivfr.it.lms.models.User;
 import ua.ivfr.it.lms.views.IndexView;
 import ua.ivfr.it.lms.views.PathHtmlSingleton;
 
@@ -7,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -26,9 +28,20 @@ public class IndexFilter implements Filter {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+
         IndexView indexView = new IndexView();
         indexView.outTopPage(out);
-        indexView.outMenu(out);
+        if (user == null) {
+            indexView.outMenu(out);
+        }else {
+            indexView.outMenu_Login(out);
+        }
+
+
         //servlet
         chain.doFilter(request, response);
         //низ html сторінки

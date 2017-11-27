@@ -41,6 +41,35 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+
+    @Override
+    public User findUser(User user) {
+        DataSource dataSource = new DataSource();
+        String email2=user.getEmail();
+        System.out.println(email2);
+        try (Connection con = dataSource.createConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE users.email=\"" + email2 + "\";");) {
+            if(rs.next()){
+                User user2 = new User(
+                        rs.getLong("id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("name"),
+                        rs.getString("date"),
+                        rs.getInt("role")
+                );
+                return user2;
+            }
+
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
     @Override
     public String allUser() {
         DataSource dataSource = new DataSource();
