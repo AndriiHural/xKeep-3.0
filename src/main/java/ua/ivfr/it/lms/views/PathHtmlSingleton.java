@@ -25,8 +25,27 @@ public class PathHtmlSingleton {
     private String login;
     private String registration;
     private String user;
+    private String note_page;
     private String doshare;
     private String postshare;
+
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = getPartialHtml(note);
+    }
+    private String note;
+
+
+    public String getNote_page() {
+        return note_page;
+    }
+    public void setNote_page(String note_page) {
+        this.note_page = getPartialHtml(note_page);
+    }
 
     public String getUser() {
         return user;

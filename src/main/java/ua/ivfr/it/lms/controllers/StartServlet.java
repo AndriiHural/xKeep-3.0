@@ -38,8 +38,6 @@ public class StartServlet extends HttpServlet {
         pathHTML.setLogin("login.html");
         pathHTML.setRegistration("registration.html");
         pathHTML.setUser("user.html");
-        pathHTML.setDoshare("doshare.html");
-        pathHTML.setPostshare("postshare.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

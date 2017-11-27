@@ -31,7 +31,9 @@ public class SharedNotesServlet extends HttpServlet {
         //switch (request.getPathInfo()) {
           //  case "/shared-notes":
                 User user = (User) session.getAttribute("user");
-                if (user == null) {
+                //Serhii було if (user == null) получається що якщо користувач незалогінився то йому
+                // висвічує список розшарених заміток, а якщо залогінився то вибиває else-залогінтесь
+                if (user != null) {
                     //створюємо об'єкт для роботи із базою даних
                     SharedNotesDao sharedNotesUserDao = new SharedNotesDaoImp();
                     //отримуємо список користувачів, що розділяють замітку із id=1
