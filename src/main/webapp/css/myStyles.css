@@ -14,6 +14,7 @@ body{
     width:100%;
     padding: 10px;
     position: relative;
+    word-wrap: break-word;
 }
 .note-merg{
     margin:10px 13px;
@@ -47,6 +48,7 @@ h2{
 }
 .conteiner-width{
     margin-left: 15px;
+    margin-bottom: 15px;
     width: auto;
 
 }

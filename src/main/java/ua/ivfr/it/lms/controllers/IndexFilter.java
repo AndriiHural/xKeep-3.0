@@ -32,12 +32,15 @@ public class IndexFilter implements Filter {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
+        String path=request.getRequestURI();
+        System.out.println(path);
         //Перевірка чи користувач зайшов під своїм емайлом, якщо ні то його буде перекдати на головну.
         if (user == null) {
-            switch (request.getRequestURI()) {
+            switch (path) {
                 case "/":
                 case "/login":
                 case "/register":
+                    System.out.println(request.getRequestURI());
                     break;
                 default:
                     response.sendRedirect("/");

@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
                     "  </tr>\n" +
                     "  </table>\n" +
                     "</div>");
-            response.sendRedirect("/note/");
+            response.sendRedirect("/note");
         } else {
             response.sendRedirect("/login");
         }
