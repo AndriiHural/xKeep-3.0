@@ -1,5 +1,6 @@
 package ua.ivfr.it.lms.dao;
 
+import ua.ivfr.it.lms.models.Note;
 import ua.ivfr.it.lms.models.User;
 
 import java.sql.Connection;
@@ -43,5 +44,33 @@ public class SharedNotesDaoImp implements SharedNotesDao {
             e.printStackTrace();
         }
         return lstUsers;
+    }
+
+    @Override
+    public List<Note> getNoteByUserId(long id) {
+        DataSource dataSource = new DataSource();
+        try (Connection con = dataSource.createConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE notes.id IN(SELECT user_id FROM  shared_notes WHERE shared_notes.notes_id=\"" +id+"\")");) {
+            ArrayList<Note> notes=new ArrayList<>();
+            Note note=null;
+            while (rs2.next()) {
+                note = new Note(
+                        rs2.getInt("id"),
+                        rs2.getString("note"),
+                        rs2.getString("note_title"),
+                        rs2.getInt("is_archieve"),
+                        rs2.getString("date_added"),
+                        rs2.getString("color"),
+                        rs2.getInt("user_id")
+                );
+                notes.add(note);
+                note=null;
+            }
+            return notes;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

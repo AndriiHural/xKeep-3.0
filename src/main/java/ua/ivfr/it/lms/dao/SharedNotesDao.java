@@ -1,5 +1,6 @@
 package ua.ivfr.it.lms.dao;
 
+import ua.ivfr.it.lms.models.Note;
 import ua.ivfr.it.lms.models.User;
 
 import java.util.List;
@@ -14,4 +15,5 @@ public interface SharedNotesDao {
      * @return колекція із користувачів, що призначені до замітки яка має значення id
      */
     List<User> getUsersByNoteId(long id);
+    List<Note> getNoteByUserId(long id);
 }
