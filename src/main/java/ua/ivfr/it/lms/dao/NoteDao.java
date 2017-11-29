@@ -17,5 +17,5 @@ public interface NoteDao {
      * */
     Note UpdateNote(Note note);
     boolean deleteNote(int note_id);
-    ArrayList<Note> viewNote(int user_id);
+    ArrayList<Note> viewNotes(int user_id);
 }
