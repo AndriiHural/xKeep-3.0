@@ -57,7 +57,6 @@ public class SharedNotesServlet extends HttpServlet {
 
                     //виводимо в браузер інформацію у вигляді HTML
                     //TODO вивід потрібно зробити в класах пакету view (вигляд)
-                    out.write("<H1>List Users!</H1>");
                     //indexView.doShareNotes(out);
                     out.println(row );
                    // indexView.doPostShareNotes(out);
