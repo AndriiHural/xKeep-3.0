@@ -76,16 +76,16 @@ public class NoteServlet extends HttpServlet {
 //                    out.println("Error View");
 //                }
                 break;
+            default:
+                IndexView indexView = new IndexView();
+
+
+                HttpSession session = request.getSession();
+                User user = (User) session.getAttribute("user");
+                List<Note> notes = note.viewNote((int) user.getId());
+
+                indexView.outNotePage(out, notes);
+                break;
         }
-        IndexView indexView = new IndexView();
-
-
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        List<Note> notes = note.viewNote((int) user.getId());
-
-        indexView.outNotePage(out, notes);
-
-
     }
 }

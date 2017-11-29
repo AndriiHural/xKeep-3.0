@@ -34,19 +34,9 @@ public class IndexFilter implements Filter {
 
         String path=request.getRequestURI();
         System.out.println(path);
+        
         //Перевірка чи користувач зайшов під своїм емайлом, якщо ні то його буде перекдати на головну.
-        if (user == null) {
-            switch (path) {
-                case "/":
-                case "/login":
-                case "/register":
-                    System.out.println(request.getRequestURI());
-                    break;
-                default:
-                    response.sendRedirect("/");
-                    break;
-            }
-        }
+
 
         IndexView indexView = new IndexView();
         indexView.outTopPage(out);
@@ -56,9 +46,30 @@ public class IndexFilter implements Filter {
             indexView.outMenu_Login(out);
         }
         //servlet
-        chain.doFilter(request, response);
+        // Не зареєстрований користувач має доступ до  адрес "/" "/login" "/register"
+        // і виконується відповідний сервлет.
+        // Якщо він заходить на недоступне йому посилання здійснюєть переадресація "/"
+        // Якщо він заходить як авторизований користувач виконується відповідний сервлет.
+        if (user == null) {
+            switch (path) {
+                case "/":
+                case "/login":
+                case "/register":
+                    System.out.println(request.getRequestURI());
+                    chain.doFilter(request, response);
+                    break;
+                default:
+                    response.sendRedirect("/");
+                    break;
+            }
+        }else {
+            chain.doFilter(request, response);
+        }
+
         //низ html сторінки
         indexView.outBottomPage(out);
+
+
     }
 
     public void init(FilterConfig config) throws ServletException {

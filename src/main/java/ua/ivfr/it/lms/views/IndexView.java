@@ -63,7 +63,7 @@ public class IndexView {
             out.println("<div id=replaceID class=\"col-xs-4  col-md-3 col-lg-3 col-sm-12 note-merg\">\n" +
                     "    <div class=\"bg-note-1 note-size remove-hover\">\n" +
                     "        <a id=remove-item href=\"/note/delete?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
-                    "        <a href=\"#\">\n" +
+                    "        <a href=\"#\" data-toggle=\"modal\" data-target=\"#myModal\">\n" +
                     "            <h2>Title #1 "+ob_note.getNote_title()+"</h2>\n" +
                     "            <p>"+ob_note.getNote()+"</p>\n" +
                     "        </a>\n" +
