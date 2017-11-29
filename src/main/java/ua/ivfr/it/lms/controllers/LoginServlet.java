@@ -25,10 +25,12 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("emailLogin");
         String password = request.getParameter("loginPassword");
 
+
         HttpSession session = request.getSession();
         UserDaoImpl userDao = new UserDaoImpl();
 
-        User user = userDao.findUserByEmail(email);
+        User user = userDao.findUserByEmailPassword(email,password);
+        user.toString();
         //якщо емейл є в БД, змінна user буде посилатись на об'єкт класу User, інакше дорівнюватиме null
         if(user != null) {
             //записав об'єкт користувача в сесію, щоб перевіряти в інших сервлетах чи зареєстрований користувач

@@ -13,6 +13,6 @@ public interface UserDao {
      * @return class User or null
      */
     User findUserByEmail(String email);
-    User findUser(User user);
+    User findUserByEmailPassword(String email,String password);
     String allUser();
 }

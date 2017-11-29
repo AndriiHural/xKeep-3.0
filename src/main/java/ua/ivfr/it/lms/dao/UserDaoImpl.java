@@ -43,15 +43,14 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public User findUser(User user) {
+    public User findUserByEmailPassword(String email,String password) {
         DataSource dataSource = new DataSource();
-        String email2=user.getEmail();
-        System.out.println(email2);
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE users.email=\"" + email2 + "\";");) {
+
+             ResultSet rs = stmt.executeQuery("SELECT * FROM xkeep.users where email=\""+email+"\" and password=\""+password+"\";");) {
             if(rs.next()){
-                User user2 = new User(
+                User user = new User(
                         rs.getLong("id"),
                         rs.getString("email"),
                         rs.getString("password"),
@@ -59,7 +58,9 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("date"),
                         rs.getInt("role")
                 );
-                return user2;
+
+                return user;
+
             }
 
         }  catch (SQLException e) {
