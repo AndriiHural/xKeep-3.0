@@ -32,6 +32,18 @@ public class IndexFilter implements Filter {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
+        //Перевірка чи користувач зайшов під своїм емайлом, якщо ні то його буде перекдати на головну.
+        if (user == null) {
+            switch (request.getRequestURI()) {
+                case "/":
+                case "/login":
+                case "/register":
+                    break;
+                default:
+                    response.sendRedirect("/");
+                    break;
+            }
+        }
 
         IndexView indexView = new IndexView();
         indexView.outTopPage(out);
@@ -40,8 +52,6 @@ public class IndexFilter implements Filter {
         }else {
             indexView.outMenu_Login(out);
         }
-
-
         //servlet
         chain.doFilter(request, response);
         //низ html сторінки
