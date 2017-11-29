@@ -56,7 +56,7 @@ CREATE INDEX shared_notes_users_id_fk
 
 
 INSERT INTO `users` (`email`, `password`, `name`, `date`, `role`)
-VALUES ("igor@lyutak.com", "1122", "Igor", "2017-11-15", 1);
+VALUES ("serhiil@gmail.com", "1122", "Serhii", "2017-11-15", 1);
 
 INSERT INTO `users` (`email`, `password`, `name`, `date`, `role`)
 VALUES ("sirko5300@gmail.com", "1122", "Andrii", "2017-11-16", 1);
@@ -83,10 +83,10 @@ INSERT INTO `notes` (`note`, `note_title`, `date_added`,`is_archieve`, `color` ,
 VALUES ("T4", "text4", "2017-11-16", 0, "white",3);
 
 INSERT INTO `shared_notes` (`notes_id`, `user_id`)
-VALUES ("1", "1");
+VALUES ("1", "3");
 
 INSERT INTO `shared_notes` (`notes_id`, `user_id`)
-VALUES ("1", "3");
+VALUES ("2", "3");
 
 INSERT INTO `shared_notes` (`notes_id`, `user_id`)
 VALUES ("1", "5");
