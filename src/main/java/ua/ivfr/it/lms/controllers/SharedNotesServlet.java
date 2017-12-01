@@ -32,6 +32,7 @@ public class SharedNotesServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
+            System.out.println(user.getId());
             sharedNotesView.outPageNoteShare(out, user);
         } else {
             out.println("<h3>Ви не маєте доступу, будь-ласка, залогінтесь!</h3>");
