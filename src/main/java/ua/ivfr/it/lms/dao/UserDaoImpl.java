@@ -47,9 +47,8 @@ public class UserDaoImpl implements UserDao {
         DataSource dataSource = new DataSource();
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-
              ResultSet rs = stmt.executeQuery("SELECT * FROM xkeep.users where email=\""+email+"\" and password=\""+password+"\";");) {
-            if(rs.next()){
+             if(rs.next()){
                 User user = new User(
                         rs.getLong("id"),
                         rs.getString("email"),

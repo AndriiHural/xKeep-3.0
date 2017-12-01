@@ -9,6 +9,7 @@ public class Labels {
     private int notes_id;
     private char name;
 
+
     public Labels(int id, int user_id, int notes_id, char name) {
         this.id = id;
         this.user_id = user_id;

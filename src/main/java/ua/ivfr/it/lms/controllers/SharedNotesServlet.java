@@ -5,6 +5,7 @@ import ua.ivfr.it.lms.dao.SharedNotesDaoImp;
 import ua.ivfr.it.lms.models.Note;
 import ua.ivfr.it.lms.models.User;
 import ua.ivfr.it.lms.views.IndexView;
+import ua.ivfr.it.lms.views.SharedNotesView;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,43 +28,15 @@ public class SharedNotesServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
-        IndexView indexView = new IndexView();
-       // indexView.outLogin(out);
-
-        //switch (request.getPathInfo()) {
-          //  case "/shared-notes":
-                User user = (User) session.getAttribute("user");
-               // Note note = (Note) session.getAttribute("notes");
-
+        SharedNotesView sharedNotesView = new SharedNotesView();
+        User user = (User) session.getAttribute("user");
 
         if (user != null) {
-                    //створюємо об'єкт для роботи із базою даних
-                    SharedNotesDao sharedNotesUserDao = new SharedNotesDaoImp();
+            sharedNotesView.outPageNoteShare(out, user);
+        } else {
+            out.println("<h3>Ви не маєте доступу, будь-ласка, залогінтесь!</h3>");
+        }
 
-                    //обробляємо отриманий набір об'єктів класу User через агрегатні операції
-                    String row = sharedNotesUserDao.getNoteByUserId(user.getId()).stream()
-                            //для кожного об'єкту класу User створюємо новий об'єкт класу String
-                            .map(e -> "<div id=replaceID class=\"col-xs-4  col-md-3 col-lg-3 col-sm-12 \">\n" +
-                                    "    <div class=\"bg-note-1 note-size remove-hover\">\n" +
-                                    "        <a href=\"#\">\n" +
-                                    "            <p>"+ e.toString()+"</p>\n" +
-                                    "        </a>\n" +
-                                    "\n" +
-                                    "    </div>\n" +
-                                    "</div>")
-                            //об'єднуємо всі об'єкти класу String в один об'єкт
-                            .collect(Collectors.joining(" "));
-
-
-                    //виводимо в браузер інформацію у вигляді HTML
-                    //TODO вивід потрібно зробити в класах пакету view (вигляд)
-                    //indexView.doShareNotes(out);
-                    out.println(row );
-                   // indexView.doPostShareNotes(out);
-                } else {
-                    out.println("<h3>Ви не маєте доступу, будь-ласка, залогінтесь!</h3>");
-                }
-         //       break;
         }
     }
-//}
+
