@@ -5,23 +5,97 @@ body{
     margin-bottom: 10px;
 }
 .bg-note-1{
-    background: #ffc;
+    /*background: #ffc;*/
 }
-
-
+.myTextDec{
+    word-wrap: break-word;
+}
+.form_size{
+    height: 100%;
+}
+.edit_size90{
+    height: 90%;
+    margin-bottom: 5px;
+}
+.edit_size90 input{
+    height: 35px;
+}
+.edit_size90 textarea{
+    height: 90%;
+}
+.edit_Note{
+    height: 15%;
+}
+.rotate .note-merg.red {
+    background: #eee;
+}
+.rotate {
+    padding-bottom: 30px;
+}
 .note-size {
     height:200px;
     width:100%;
     padding: 10px;
     position: relative;
-    word-wrap: break-word;
+    overflow: hidden;
+}
+.note-merg input {
+    display: none;
+}
+.note-merg textarea {
+    display: none;
+}
+
+.note-merg .edit_Note{
+    display: none;
+}
+
+div.rotate.open .note-merg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 0;
+    top: 0;
+    transform: none;
+    z-index: 20;
+    background: #000000b5;
+}
+div.rotate.open .note-merg input{
+    display: block;
+}
+div.rotate.open .note-merg textarea {
+    display: block;
+}
+div.rotate.open .note-merg .onclick{
+    display: none;
+}
+
+div.rotate.open .note-merg .edit_Note {
+    display: block;
+}
+div.rotate.open .note-merg #remove-item{
+    display: none;
+}
+
+div.rotate.open .note-merg .merg-color {
+    max-width: 50%;
+    height: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.close {
+    z-index: 10000 !important;
 }
 .note-merg{
-    margin:10px 13px;
+    /*margin:10px 13px;*/
     padding: 0px 0px;
     height:200px;
-    width:290px;
-    float: left;
+    /*width:290px;*/
+    /*float: left;*/
+    margin: 10px;
     -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
 }
 .bg-note-2{
@@ -42,42 +116,49 @@ body{
 .row-margen{
 
 }
-h2{
+h3{
     padding: 10px 10px;
     margin: 0px;
 }
-.conteiner-width{
-    margin-left: 15px;
-    margin-bottom: 15px;
-    width: auto;
 
-}
-.note-merg:nth-child(even) {
+.rotate .note-merg {
     -o-transform:rotate(4deg);
     -webkit-transform:rotate(4deg);
     -moz-transform:rotate(4deg);
     position:relative;
     top:5px;
+
+}
+.rotate .note-merg .merg-color {
     background: #ffc;
 }
-.note-merg:nth-child(3n) {
+.rotate:nth-child(3n) .note-merg,
+.rotate:first-child .note-merg {
     -o-transform:rotate(-3deg);
     -webkit-transform:rotate(-3deg);
     -moz-transform:rotate(-3deg);
     position:relative;
     top:-5px;
+
+}
+
+.rotate:nth-child(3n) .note-merg .merg-color,
+.rotate:first-child .note-merg .merg-color {
     background:#cfc;
 }
-.note-merg:nth-child(5n) {
+
+.rotate:nth-child(5n) .note-merg {
     -o-transform:rotate(5deg);
     -webkit-transform:rotate(5deg);
     -moz-transform:rotate(5deg);
     position:relative;
     top:-10px;
+
+}
+.rotate:nth-child(5n) .note-merg .merg-color {
     background:#ccf;
 }
-
-.note-merg:hover, .note-merg:focus{
+.rotate .note-merg:hover, .note-merg:focus{
     -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
     -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
     box-shadow:10px 10px 7px rgba(0,0,0,.7);

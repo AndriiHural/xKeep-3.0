@@ -26,13 +26,28 @@ public class NoteServlet extends HttpServlet {
         String fieldNote = request.getParameter("fieldNote");
         User user = (User) session.getAttribute("user");
 
-        NoteDaoImpl noteDao = new NoteDaoImpl();
-        // створення нової закладки при натисканні на кнопку New
-        noteDao.UpdateNote(new Note(
-                0, fieldNote, "Title2",
-                0, null, "RED", (int) user.getId()
+        switch (request.getPathInfo()) {
+            case "/new":
+                NoteDaoImpl noteDao = new NoteDaoImpl();
+                // створення нової закладки при натисканні на кнопку New
+                noteDao.UpdateNote(new Note(
+                        0, fieldNote, "Title2",
+                        0, null, "RED", (int) user.getId()
                 ));
-        response.sendRedirect("/note/");
+                response.sendRedirect("/note/");
+                break;
+            case "/edit":
+
+                break;
+
+            case "/delete":
+                break;
+            case "/view":
+                break;
+            default:
+                response.sendRedirect("/note/");
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
