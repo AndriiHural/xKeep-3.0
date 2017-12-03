@@ -1,12 +1,10 @@
 package ua.ivfr.it.lms.dao;
 
 import ua.ivfr.it.lms.models.Note;
+import ua.ivfr.it.lms.models.SharedNotes;
 import ua.ivfr.it.lms.models.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,9 +47,10 @@ public class SharedNotesDaoImp implements SharedNotesDao {
     @Override
     public List<Note> getNoteByUserId(long id) {
         DataSource dataSource = new DataSource();
+        List<Note> lstnote = new ArrayList<>();
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE notes.id IN(SELECT user_id FROM  shared_notes WHERE shared_notes.notes_id=\"" +id+"\")");) {
+             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE notes.id IN(SELECT shared_notes.notes_id FROM  shared_notes WHERE shared_notes.user_id=\"" +id+"\")");) {
             ArrayList<Note> notes=new ArrayList<>();
             Note note=null;
             while (rs2.next()) {
@@ -64,13 +63,32 @@ public class SharedNotesDaoImp implements SharedNotesDao {
                         rs2.getString("color"),
                         rs2.getInt("user_id")
                 );
-                notes.add(note);
-                note=null;
+                //notes.add(note);
+                //note=null;
+                System.out.println(note);
+                lstnote.add(note);
             }
-            return notes;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return lstnote;
     }
+    @Override
+    public void addSharedNote(SharedNotes sharedNotes) {
+        DataSource dataSource = new DataSource();
+
+        try(
+                Connection con = dataSource.createConnection();
+                PreparedStatement stmt = (sharedNotes.getId() == 0L) ? con.prepareStatement("INSERT INTO shared_notes (user_id, notes_id) VALUES (?,?)") :
+                        con.prepareStatement("UPDATE shared_notes SET user_id=?, notes_id=? WHERE id=" + sharedNotes.getId());
+        ){
+            stmt.setLong(1, sharedNotes.getUser_id());
+            stmt.setLong(2, sharedNotes.getNotes_id());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
