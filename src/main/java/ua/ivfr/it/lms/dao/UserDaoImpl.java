@@ -2,10 +2,9 @@ package ua.ivfr.it.lms.dao;
 
 import ua.ivfr.it.lms.models.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Клас, що реалізує методи інтерфейсу UserDao
@@ -40,8 +39,6 @@ public class UserDaoImpl implements UserDao {
 
         return null;
     }
-
-
     @Override
     public User findUserByEmailPassword(String email,String password) {
         DataSource dataSource = new DataSource();
@@ -69,7 +66,6 @@ public class UserDaoImpl implements UserDao {
 
         return null;
     }
-
     @Override
     public String allUser() {
         DataSource dataSource = new DataSource();
@@ -96,6 +92,75 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+    @Override
+    public User creatUser(String email, String password, String name) {
+        DataSource dataSource = new DataSource();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.now();
+        String data = dtf.format(localDate); //2016/11/16
+        PreparedStatement stmt = null;
+
+        try (Connection con = dataSource.createConnection()) {
+//            stmt=con.prepareStatement("INSERT INTO test(text)VALUE ('BBBBBB')");
+//            stmt.execute();
 
 
+            stmt = con.prepareStatement("INSERT INTO users(users.email,users.password,users.name," +
+                    "users.date,users.role)" +
+                    " VALUE ('" + email + "','" + password + "','" + name + "','"
+                    + data + "'," + "2" + ");");
+            stmt.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    @Override
+    public User deleteUser(String email) {
+        DataSource dataSource = new DataSource();
+        PreparedStatement stmt = null;
+        try (Connection con = dataSource.createConnection()){
+            stmt = con.prepareStatement(
+                    "DELETE FROM users WHERE users.email=\""+email+"\";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    @Override
+    public User editNameUser(String email,String name) {
+        DataSource dataSource = new DataSource();
+        PreparedStatement stmt = null;
+        try (Connection con = dataSource.createConnection()) {
+                stmt = con.prepareStatement("UPDATE users" +
+                        " SET users.name=\""+name+"\" WHERE users.email=\""+email+"\";");
+
+                stmt.execute();
+
+
+        } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        return null;
+    }
+
+    @Override
+    public User editPasswordUser(User user, String password, String passwordNew) {
+        DataSource dataSource = new DataSource();
+        PreparedStatement stmt = null;
+        try (Connection con = dataSource.createConnection()) {
+            stmt = con.prepareStatement("UPDATE users" +
+                    " SET users.password=\""+passwordNew+"\" WHERE users.password=\""+password+"\";");
+
+            stmt.execute();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

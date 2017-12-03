@@ -41,10 +41,9 @@ public class IndexFilter implements Filter {
                 case "/":
                 case "/login":
                 case "/register":
-                case "/user/":
                     break;
-                case "/note/":
-                    response.sendRedirect("/login");
+                default:
+                    response.sendRedirect("/");
                     break;
             }
         }
