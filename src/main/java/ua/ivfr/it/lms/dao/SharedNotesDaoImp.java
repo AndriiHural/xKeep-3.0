@@ -46,6 +46,7 @@ public class SharedNotesDaoImp implements SharedNotesDao {
 
     @Override
     public List<Note> getNoteByUserId(long id) {
+        System.out.println("НУУУІІІІ");
         DataSource dataSource = new DataSource();
         List<Note> lstnote = new ArrayList<>();
         try (Connection con = dataSource.createConnection();
@@ -53,6 +54,8 @@ public class SharedNotesDaoImp implements SharedNotesDao {
              ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE notes.id IN(SELECT shared_notes.notes_id FROM  shared_notes WHERE shared_notes.user_id=\"" +id+"\")");) {
             ArrayList<Note> notes=new ArrayList<>();
             Note note=null;
+            if(rs2==null){System.out.println("NOoooo");}
+
             while (rs2.next()) {
                 note = new Note(
                         rs2.getInt("id"),

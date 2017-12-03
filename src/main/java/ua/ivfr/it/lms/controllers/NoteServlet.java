@@ -4,6 +4,7 @@ import ua.ivfr.it.lms.dao.NoteDaoImpl;
 import ua.ivfr.it.lms.models.Note;
 import ua.ivfr.it.lms.models.User;
 import ua.ivfr.it.lms.views.IndexView;
+import ua.ivfr.it.lms.views.Note_view;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "NoteServlet", urlPatterns = {"/note/*"})
@@ -26,13 +26,28 @@ public class NoteServlet extends HttpServlet {
         String fieldNote = request.getParameter("fieldNote");
         User user = (User) session.getAttribute("user");
 
-        NoteDaoImpl noteDao = new NoteDaoImpl();
-        // створення нової закладки при натисканні на кнопку New
-        noteDao.UpdateNote(new Note(
-                0, fieldNote, "Title2",
-                0, null, "RED", (int) user.getId()
+        switch (request.getPathInfo()) {
+            case "/new":
+                NoteDaoImpl noteDao = new NoteDaoImpl();
+                // створення нової закладки при натисканні на кнопку New
+                noteDao.UpdateNote(new Note(
+                        0, fieldNote, "Title2",
+                        0, null, "RED", (int) user.getId()
                 ));
-        response.sendRedirect("/note/");
+                response.sendRedirect("/note/");
+                break;
+            case "/edit":
+
+                break;
+
+            case "/delete":
+                break;
+            case "/view":
+                break;
+            default:
+                response.sendRedirect("/note/");
+                break;
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,14 +57,6 @@ public class NoteServlet extends HttpServlet {
 
         switch (request.getPathInfo()) {
             case "/new":
-                out.write("<H1>New Note!</H1>");
-                Note newNote = new Note(0, "New", "Title2", 0, null, "RED", 2);
-                Note n = note.UpdateNote(newNote);
-                if (n != null) {
-                    out.println(n);
-                } else {
-                    out.println("Error New");
-                }
                 break;
             case "/edit":
                 out.write("<H1>Edit Note!</H1>");
@@ -68,23 +75,13 @@ public class NoteServlet extends HttpServlet {
                 response.sendRedirect("/note/");
                 break;
             case "/view":
-                out.write("<H1>View Note!</H1>");
-//                Note note_view=note.viewNote(1);
-//                if(note_view!=null){
-//                    out.println("<H2>"+note_view+"</H2>");
-//                }else {
-//                    out.println("Error View");
-//                }
                 break;
             default:
-                IndexView indexView = new IndexView();
-
-
+                Note_view note_view=new Note_view();
                 HttpSession session = request.getSession();
                 User user = (User) session.getAttribute("user");
-                List<Note> notes = note.viewNote((int) user.getId());
-
-                indexView.outNotePage(out, notes);
+                List<Note> notes = note.viewNotes((int) user.getId());
+                note_view.outNotePage(out,notes);
                 break;
         }
     }
