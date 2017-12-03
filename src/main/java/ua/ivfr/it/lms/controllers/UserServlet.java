@@ -20,7 +20,29 @@ import java.net.URLConnection;
 public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
+        UserDaoImpl userDao =new UserDaoImpl();
+        User user = (User) session.getAttribute("user");
+
+        String name = request.getParameter("inputName");
+        String password = request.getParameter("inputPassword");
+        String passwordNew = request.getParameter("inputPasswordNew");
+
+        if(name!=null){
+            userDao.editNameUser(user.getEmail(),name);
+            user.setName(name);
+        }
+
+        if(password!=null&&passwordNew!=null){
+            userDao.editPasswordUser(user,password,passwordNew);
+            out.write("<H1>Пароль змінено</H1>");
+            user.setPassword(passwordNew);
+        }
+
+        response.sendRedirect("/user/");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,29 +52,22 @@ public class UserServlet extends HttpServlet {
 
         User user = (User) session.getAttribute("user");
 
-        out.write("<h2>Ваше ім'я: "+user.getName()+"</h2>");;
-        out.write("<h2>Ваш email: "+user.getEmail()+"</h2>");;
+        out.write("<h2>Ваше ім'я: "+user.getName()+"</h2>");
+        out.write("<h2>Ваш email: "+user.getEmail()+"</h2>");
 
 
         IndexView indexView = new IndexView();
         UserDaoImpl userDao=new UserDaoImpl();
-
+        indexView.outUser(out);
 
         switch (request.getPathInfo()) {
-            case "/new":
-                out.write("<H1>New User!</H1>");
-                break;
-            case "/edit":
-                out.write("<H1>Edit User!</H1>");
+            case"/edit/password":
+                out.write("<H1>kffhk</H1>");
                 break;
             case "/delete":
-                out.write("<H1>Delete User!</H1>");
-                break;
-            case "/view":
-                out.write("<H1>"+userDao.allUser()+"</H1>");
-                break;
-            case "/seach":
-                out.write("<H1>"+userDao.findUserByEmail("sasha19970808@com.ua")+"</H1>");
+                userDao.deleteUser(user.getEmail());
+                session.removeValue("user");
+                response.sendRedirect("/");
                 break;
             case "/out":
                 session.removeValue("user");

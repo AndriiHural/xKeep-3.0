@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
                     "</div>");
             response.sendRedirect("/note/");
         } else {
-            response.sendRedirect("/login");
+            response.sendRedirect("/");
         }
     }
 

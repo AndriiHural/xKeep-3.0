@@ -15,4 +15,8 @@ public interface UserDao {
     User findUserByEmail(String email);
     User findUserByEmailPassword(String email,String password);
     String allUser();
+    User creatUser(String email,String password,String name);
+    User deleteUser(String email);
+    User editNameUser(String email,String name);
+    User editPasswordUser(User user,String password, String passwordNew);
 }

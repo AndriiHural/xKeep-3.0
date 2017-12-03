@@ -2,31 +2,24 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form class="form-signin" role="form">
+            <form action="/register" method="POST" class="form-horizontal">
                 <h2 class="form-signin-heading text-center">Реєстрація</h2>
 
-                <label for="inputname" class="sr-only">name</label>
-                <input type="name" id="inputname" class="form-control" placeholder="Введіть своє ім'я" required>
 
+                <label for="inputEmail">Введіть Email</label>
+                <input type="Email" class="form-control" id="inputEmail"  name="inputEmail" placeholder="Email" required>
                 <p></p>
 
-                <label for="inputsurname" class="sr-only">surname</label>
-                <input type="surname" id="inputsurname" class="form-control" placeholder="Введіть своє Прізвище"
-                       required>
-
+                <label for="inputPassword">Пароль</label>
+                <input type="Password" class="form-control" id="inputPassword"  name="inputPassword" placeholder="Пароль" required>
                 <p></p>
 
-                <label for="inputEmail" class="sr-only">Email</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-
-                <p></p>
-
-                <label for="inputPassword" class="sr-only">Пароль</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Пароль" required>
-
+                <label for="inputName">Введіть своє ім'я</label>
+                <input type="name" class="form-control" id="inputName"  name="inputName" placeholder="Ім'я" required>
                 <p></p>
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Зареєструватися</button>
+
             </form>
         </div>
     </div>

@@ -11,7 +11,6 @@ public class SharedNotesView {
     private PathHtmlSingleton pathHtmlSingleton;
     //Вивід розшариних нотаток
     public void outPageNoteShare(PrintWriter out, User user) {
-
         SharedNotesDao sharedNotesDao = new SharedNotesDaoImp();
         //обробляємо отриманий набір об'єктів класу note через агрегатні операції
         String row = sharedNotesDao.getNoteByUserId(user.getId()).stream()
