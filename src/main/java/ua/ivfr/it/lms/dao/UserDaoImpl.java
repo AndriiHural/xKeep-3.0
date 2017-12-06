@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 public class UserDaoImpl implements UserDao {
     /**
      * Шукає користувача за email
+     *
      * @param email має бути із форми логіна
      * @return claas User or null
      */
@@ -21,7 +22,7 @@ public class UserDaoImpl implements UserDao {
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE users.email=\"" + email + "\";");) {
-            if(rs.next()){
+            if (rs.next()) {
                 User user = new User(
                         rs.getLong("id"),
                         rs.getString("email"),
@@ -33,19 +34,20 @@ public class UserDaoImpl implements UserDao {
                 return user;
             }
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return null;
     }
+
     @Override
-    public User findUserByEmailPassword(String email,String password) {
+    public User findUserByEmailPassword(String email, String password) {
         DataSource dataSource = new DataSource();
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM xkeep.users where email=\""+email+"\" and password=\""+password+"\";");) {
-             if(rs.next()){
+             ResultSet rs = stmt.executeQuery("SELECT * FROM xkeep.users where email=\"" + email + "\" and password=\"" + password + "\";");) {
+            if (rs.next()) {
                 User user = new User(
                         rs.getLong("id"),
                         rs.getString("email"),
@@ -59,21 +61,22 @@ public class UserDaoImpl implements UserDao {
 
             }
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
 
         return null;
     }
+
     @Override
     public String allUser() {
         DataSource dataSource = new DataSource();
-        String all="";
+        String all = "";
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM users ");) {
-            while(rs.next()){
+            while (rs.next()) {
                 User user = new User(
                         rs.getLong("id"),
                         rs.getString("email"),
@@ -82,16 +85,17 @@ public class UserDaoImpl implements UserDao {
                         rs.getString("date"),
                         rs.getInt("role")
                 );
-                all=all+user.toString()+"       ";
+                all = all + user.toString() + "       ";
             }
             return all;
 
 
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
     @Override
     public User creatUser(String email, String password, String name) {
         DataSource dataSource = new DataSource();
@@ -117,33 +121,35 @@ public class UserDaoImpl implements UserDao {
 
         return null;
     }
+
     @Override
     public User deleteUser(String email) {
         DataSource dataSource = new DataSource();
         PreparedStatement stmt = null;
-        try (Connection con = dataSource.createConnection()){
+        try (Connection con = dataSource.createConnection()) {
             stmt = con.prepareStatement(
-                    "DELETE FROM users WHERE users.email=\""+email+"\";");
+                    "DELETE FROM users WHERE users.email=\"" + email + "\";");
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
     @Override
-    public User editNameUser(String email,String name) {
+    public User editNameUser(String email, String name) {
         DataSource dataSource = new DataSource();
         PreparedStatement stmt = null;
         try (Connection con = dataSource.createConnection()) {
-                stmt = con.prepareStatement("UPDATE users" +
-                        " SET users.name=\""+name+"\" WHERE users.email=\""+email+"\";");
+            stmt = con.prepareStatement("UPDATE users" +
+                    " SET users.name=\"" + name + "\" WHERE users.email=\"" + email + "\";");
 
-                stmt.execute();
+            stmt.execute();
 
 
         } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -153,7 +159,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement stmt = null;
         try (Connection con = dataSource.createConnection()) {
             stmt = con.prepareStatement("UPDATE users" +
-                    " SET users.password=\""+passwordNew+"\" WHERE users.password=\""+password+"\";");
+                    " SET users.password=\"" + passwordNew + "\" WHERE users.password=\"" + password + "\";");
 
             stmt.execute();
 
@@ -163,4 +169,32 @@ public class UserDaoImpl implements UserDao {
         }
         return null;
     }
+
+    @Override
+    public String fintUserById(long user_id) {
+        DataSource dataSource = new DataSource();
+        //PreparedStatement stmt = null;
+        String all = "  ";
+        try (Connection con = dataSource.createConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE id=\"" + user_id + "\";");) {
+            while (rs.next()) {
+                User user = new User(
+                        rs.getLong("id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("name"),
+                        rs.getString("date"),
+                        rs.getInt("role")
+                );
+                all = all + user.getEmail() + "    ";
+            }
+
+            return all;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

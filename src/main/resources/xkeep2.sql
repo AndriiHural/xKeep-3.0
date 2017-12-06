@@ -105,5 +105,11 @@ VALUES ("2", "3");
 
 INSERT INTO `shared_notes` (`notes_id`, `user_id`)
 VALUES ("1", "5");
+INSERT INTO `shared_notes` (`notes_id`, `user_id`)
+VALUES ("1", "1");
+INSERT INTO `shared_notes` (`notes_id`, `user_id`)
+VALUES ("2", "1");
+INSERT INTO `shared_notes` (`notes_id`, `user_id`)
+VALUES ("6", "1");
 
 

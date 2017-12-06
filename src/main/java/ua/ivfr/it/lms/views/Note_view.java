@@ -24,6 +24,7 @@ public class Note_view {
                     "        <div class=\"note-merg\">\n" +
                     "            <div class=\"bg-note-1 note-size merg-color remove-hover\">\n" +
                     "                <a id=remove-item href=\"/note/delete?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
+                    "                <a id=share-item href=\"/note/shared?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-share-alt\"></span></a>\n" +
                     "                <a href=\"#\" class='onclick'>\n" +
                     "                    <h3>Title #1"+ob_note.getNote_title()+"</h3>\n" +
                     "                    <p>"+ob_note.getNote()+"</p>\n" +

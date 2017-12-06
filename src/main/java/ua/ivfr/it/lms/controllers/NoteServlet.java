@@ -1,7 +1,10 @@
 package ua.ivfr.it.lms.controllers;
 
 import ua.ivfr.it.lms.dao.NoteDaoImpl;
+import ua.ivfr.it.lms.dao.SharedNotesDao;
+import ua.ivfr.it.lms.dao.SharedNotesDaoImp;
 import ua.ivfr.it.lms.models.Note;
+import ua.ivfr.it.lms.models.SharedNotes;
 import ua.ivfr.it.lms.models.User;
 import ua.ivfr.it.lms.views.IndexView;
 import ua.ivfr.it.lms.views.Note_view;
@@ -25,6 +28,7 @@ public class NoteServlet extends HttpServlet {
 
         String fieldNote = request.getParameter("fieldNote");
         User user = (User) session.getAttribute("user");
+        Note note = null;
 
         switch (request.getPathInfo()) {
             case "/new":
@@ -39,7 +43,10 @@ public class NoteServlet extends HttpServlet {
             case "/edit":
 
                 break;
+            case "/shared":
 
+                response.sendRedirect("/note/");
+                break;
             case "/delete":
                 break;
             case "/view":
@@ -54,6 +61,7 @@ public class NoteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         NoteDaoImpl note = new NoteDaoImpl();
+
 
         switch (request.getPathInfo()) {
             case "/new":
@@ -70,11 +78,19 @@ public class NoteServlet extends HttpServlet {
                 break;
 
             case "/delete":
-                int id= Integer.parseInt(request.getParameter("id"));
+                int id = Integer.parseInt(request.getParameter("id"));
                 note.deleteNote(id);
+                System.out.println(id);
                 response.sendRedirect("/note/");
                 break;
             case "/view":
+                break;
+            case "/shared":
+                SharedNotesDaoImp sharedNotesDaoImp = new SharedNotesDaoImp();
+
+                sharedNotesDaoImp.addSharedNote(new SharedNotes(9,1,1
+                ));
+                response.sendRedirect("/note/");
                 break;
             default:
                 Note_view note_view=new Note_view();

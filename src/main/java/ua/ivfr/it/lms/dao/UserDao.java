@@ -19,4 +19,5 @@ public interface UserDao {
     User deleteUser(String email);
     User editNameUser(String email,String name);
     User editPasswordUser(User user,String password, String passwordNew);
+    String fintUserById(long id);
 }

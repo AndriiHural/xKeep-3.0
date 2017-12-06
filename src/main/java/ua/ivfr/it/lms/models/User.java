@@ -14,7 +14,10 @@ public class User {
     private String data_registered;
     private int role;
 
-    public User( String email) {
+    public User() {
+    }
+
+    public User(String email) {
         this.email = email;
     }
 
