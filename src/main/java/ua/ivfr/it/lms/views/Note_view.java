@@ -32,14 +32,13 @@ public class Note_view {
                     "                </a>\n" +
                     "                <form action=\"/note/edit\" method=\"GET\" class=\"form_size\">\n" +
                     "                    <div class=\"edit_size90\">\n" +
-                    "                        <input type=\"text\" class=\"form-control\" placeholder=\""+ob_note.getNote_title()+"\" name=\"title\">\n" +
+                    "                        <input type=\"text\" class=\"form-control\" value=\""+ob_note.getNote_title()+"\" name=\"title\">\n" +
                     "                        <input type=\"hidden\" class=\"form-control\" value=\""+ob_note.getId()+"\" name=\"id\">\n" +
                     "                        <textarea class=\"form-control\" rows=\"3\" name=\"noteText\">"+ob_note.getNote()+"</textarea>\n" +
                     "                    </div>\n" +
                     "                    <div class=\"edit_Note\">\n" +
                     "                        <button class=\"btn btn-default  close\">Закрити</button>\n" +
                     "                        <button type=\"submit\" class=\"btn btn-success\">Зберегти2</button>\n" +
-                    //"                        <a type=\"submit\" href=\"/note/edit?id="+ob_note.getId()+"\" class=\"btn btn-success\">Зберегти</a>\n" +
                     "                    </div>\n" +
                     "                </form>\n" +
                     "            </div>\n" +

@@ -1,5 +1,5 @@
 body{
-    background:#666;;
+    background: #b8bea7;;
 }
 .fild-marg{
     margin-bottom: 10px;
@@ -110,7 +110,16 @@ div.rotate.open .note-merg .merg-color {
     right: 8px;
     display: none;
 }
+#share-item{
+    position: absolute;
+    top: 10px;
+    right: 28px;
+    display: none;
+}
 .remove-hover:hover #remove-item{
+    display: block;
+}
+.remove-hover:hover #share-item{
     display: block;
 }
 .row-margen{
