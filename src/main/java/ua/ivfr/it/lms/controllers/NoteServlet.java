@@ -28,11 +28,10 @@ public class NoteServlet extends HttpServlet {
 
         String fieldNote = request.getParameter("fieldNote");
         User user = (User) session.getAttribute("user");
-        Note note = null;
-
+        System.out.println("NoteServlet POST\t" + request.getPathInfo());
+        NoteDaoImpl noteDao = new NoteDaoImpl();
         switch (request.getPathInfo()) {
             case "/new":
-                NoteDaoImpl noteDao = new NoteDaoImpl();
                 // створення нової закладки при натисканні на кнопку New
                 noteDao.UpdateNote(new Note(
                         0, fieldNote, "Title2",
@@ -41,7 +40,16 @@ public class NoteServlet extends HttpServlet {
                 response.sendRedirect("/note/");
                 break;
             case "/edit":
-
+                // створення нової закладки при натисканні на кнопку New
+                System.out.println("NoteServlet edit");
+                int id = Integer.parseInt(request.getParameter("id"));
+                String noteText = request.getParameter("noteText");
+                String title = request.getParameter("title");
+                System.out.println("NoteServlet edit\t" + id + "\t" + noteText + "\t" + title);
+                noteDao.UpdateNote(new Note(
+                        id, noteText, title, 0, null, "RED", (int) user.getId()
+                ));
+                response.sendRedirect("/note/");
                 break;
             case "/shared":
 
@@ -61,26 +69,26 @@ public class NoteServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         NoteDaoImpl note = new NoteDaoImpl();
-
-
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         switch (request.getPathInfo()) {
             case "/new":
                 break;
             case "/edit":
-                out.write("<H1>Edit Note!</H1>");
-                Note editNote = new Note(2, "Edit", "Title2", 0, null, "RED", 1);
-                Note n2 = note.UpdateNote(editNote);
-                if (n2 != null) {
-                    out.println(n2);
-                } else {
-                    out.println("Error Edit");
-                }
+                System.out.println("NoteServlet edit");
+                int id = Integer.parseInt(request.getParameter("id"));
+                String noteText = request.getParameter("noteText");
+                String title = request.getParameter("title");
+                System.out.println("NoteServlet edit\t" + id + "\t" + noteText + "\t" + title);
+                note.UpdateNote(new Note(
+                        id, noteText, title, 0, null, "RED", (int) user.getId()
+                ));
+                response.sendRedirect("/note/");
                 break;
 
             case "/delete":
-                int id = Integer.parseInt(request.getParameter("id"));
-                note.deleteNote(id);
-                System.out.println(id);
+                int id_del = Integer.parseInt(request.getParameter("id"));
+                note.deleteNote(id_del);
                 response.sendRedirect("/note/");
                 break;
             case "/view":
@@ -88,16 +96,14 @@ public class NoteServlet extends HttpServlet {
             case "/shared":
                 SharedNotesDaoImp sharedNotesDaoImp = new SharedNotesDaoImp();
 
-                sharedNotesDaoImp.addSharedNote(new SharedNotes(9,1,1
+                sharedNotesDaoImp.addSharedNote(new SharedNotes(9, 1, 1
                 ));
                 response.sendRedirect("/note/");
                 break;
             default:
-                Note_view note_view=new Note_view();
-                HttpSession session = request.getSession();
-                User user = (User) session.getAttribute("user");
+                Note_view note_view = new Note_view();
                 List<Note> notes = note.viewNotes((int) user.getId());
-                note_view.outNotePage(out,notes);
+                note_view.outNotePage(out, notes);
                 break;
         }
     }

@@ -29,7 +29,7 @@ public class NoteDaoImpl implements NoteDao {
                 stmt.setString(2, note.getNote_title());
                 stmt.setString(3, data);
                 stmt.setString(4, note.getColor());
-                stmt.setInt(5,note.getId());
+                stmt.setInt(5, note.getId());
                 stmt.execute();
 
             } else {
@@ -39,7 +39,7 @@ public class NoteDaoImpl implements NoteDao {
                         + note.getColor() + "'," + note.getUser_id() + ");");
                 stmt.execute();
             }
-            ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE id="+note.getId()+";");
+            ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE id=" + note.getId() + ";");
             if (rs2.next()) {
                 Note note1 = new Note(
                         rs2.getInt("id"),
@@ -50,6 +50,7 @@ public class NoteDaoImpl implements NoteDao {
                         rs2.getString("color"),
                         rs2.getInt("user_id")
                 );
+                System.out.println("NOTE\t" + note1);
                 return note1;
             }
         } catch (SQLException e) {
@@ -62,7 +63,7 @@ public class NoteDaoImpl implements NoteDao {
     public boolean deleteNote(int note_id) {
         DataSource dataSource = new DataSource();
         PreparedStatement stmt = null;
-        try (Connection con = dataSource.createConnection()){
+        try (Connection con = dataSource.createConnection()) {
             stmt = con.prepareStatement(
                     "DELETE FROM notes WHERE id=?");
             stmt.setInt(1, note_id);
@@ -79,9 +80,9 @@ public class NoteDaoImpl implements NoteDao {
         DataSource dataSource = new DataSource();
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE user_id="+user_id+";");
+             ResultSet rs2 = stmt.executeQuery("SELECT * FROM notes WHERE user_id=" + user_id + ";");
         ) {
-            ArrayList<Note> notes=new ArrayList<>();
+            ArrayList<Note> notes = new ArrayList<>();
             while (rs2.next()) {
                 Note note = new Note(
                         rs2.getInt("id"),

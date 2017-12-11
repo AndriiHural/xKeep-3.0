@@ -139,7 +139,6 @@ public class SharedNotesDaoImp implements SharedNotesDao {
 
     @Override
     public List<Note> getNoteByUserId(long id) {
-        System.out.println("НУУУІІІІ");
         DataSource dataSource = new DataSource();
         List<Note> lstnote = new ArrayList<>();
         try (Connection con = dataSource.createConnection();
@@ -163,7 +162,6 @@ public class SharedNotesDaoImp implements SharedNotesDao {
                 );
                 //notes.add(note);
                 //note=null;
-                System.out.println(note);
                 lstnote.add(note);
             }
         } catch (SQLException e) {
