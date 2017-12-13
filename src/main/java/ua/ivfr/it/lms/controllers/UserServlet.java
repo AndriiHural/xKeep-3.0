@@ -30,17 +30,19 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("inputName");
         String password = request.getParameter("inputPassword");
         String passwordNew = request.getParameter("inputPasswordNew");
+        String passwordNew2 = request.getParameter("inputPasswordNew2");
 
         if(name!=null){
             userDao.editNameUser(user.getEmail(),name);
             user.setName(name);
         }
 
-        if(password!=null&&passwordNew!=null){
+        if(password!=null&&passwordNew!=null&&passwordNew.equals(passwordNew2)){
             userDao.editPasswordUser(user,password,passwordNew);
             out.write("<H1>Пароль змінено</H1>");
             user.setPassword(passwordNew);
         }
+        else{}
 
         response.sendRedirect("/user/");
     }
