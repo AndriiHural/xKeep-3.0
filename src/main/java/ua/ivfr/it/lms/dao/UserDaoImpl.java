@@ -5,6 +5,7 @@ import ua.ivfr.it.lms.models.User;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 /**
  * Клас, що реалізує методи інтерфейсу UserDao
@@ -22,6 +23,31 @@ public class UserDaoImpl implements UserDao {
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE users.email=\"" + email + "\";");) {
+            if (rs.next()) {
+                User user = new User(
+                        rs.getLong("id"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("name"),
+                        rs.getString("date"),
+                        rs.getInt("role")
+                );
+                return user;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public User findUserByIdUser(long id) {
+        DataSource dataSource = new DataSource();
+        try (Connection con = dataSource.createConnection();
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM users WHERE users.id=\"" + id + "\";");) {
             if (rs.next()) {
                 User user = new User(
                         rs.getLong("id"),
@@ -70,26 +96,25 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String allUser() {
+    public ArrayList<User> allUser() {
         DataSource dataSource = new DataSource();
-        String all = "";
         try (Connection con = dataSource.createConnection();
              Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM users ");) {
+             ResultSet rs = stmt.executeQuery("SELECT * FROM users ;");
+        ) {
+            ArrayList<User> users = new ArrayList<>();
             while (rs.next()) {
                 User user = new User(
-                        rs.getLong("id"),
+                        rs.getInt("id"),
                         rs.getString("email"),
                         rs.getString("password"),
                         rs.getString("name"),
                         rs.getString("date"),
                         rs.getInt("role")
                 );
-                all = all + user.toString() + "       ";
+                users.add(user);
             }
-            return all;
-
-
+            return users;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -197,4 +222,47 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    @Override
+    public void editRoleForId(User user,long id) {
+        DataSource dataSource = new DataSource();
+        PreparedStatement stmt = null;
+        if(user.getRole()!=3) {
+            try (Connection con = dataSource.createConnection()) {
+                stmt = con.prepareStatement("UPDATE users" +
+                        " SET users.role=\"" + "3" + "\" WHERE users.id=\"" + id + "\";");
+
+                stmt.execute();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(user.getRole()==3){
+            try (Connection con = dataSource.createConnection()) {
+                stmt = con.prepareStatement("UPDATE users" +
+                        " SET users.role=\"" + "2" + "\" WHERE users.id=\"" + id + "\";");
+
+                stmt.execute();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void editEmailPasswordNameForId(User user, String email, String password, String name) {
+        DataSource dataSource = new DataSource();
+        PreparedStatement stmt = null;
+            try (Connection con = dataSource.createConnection()) {
+                stmt = con.prepareStatement("UPDATE users" +
+                        " SET users.email=\"" + email  + "\",users.password=\"" + password  + "\",users.name=\""+name+"\" WHERE users.email=\"" + user.getEmail() + "\";");
+
+                stmt.execute();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    }
 }

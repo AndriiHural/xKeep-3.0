@@ -43,6 +43,7 @@ public class StartServlet extends HttpServlet {
         pathHTML.setTop("top.html");
         pathHTML.setMenu("menu.html");
         pathHTML.setMenu_login("menu_login.html");
+        pathHTML.setMenu_admin("menu_admin.html");
         pathHTML.setBottom("bottom.html");
         pathHTML.setLogin("login.html");
         pathHTML.setRegistration("registration.html");
@@ -51,6 +52,7 @@ public class StartServlet extends HttpServlet {
         pathHTML.setNote("note.html");
         pathHTML.setDoshare("doshare.html");
         pathHTML.setPostshare("postshare.html");
+        pathHTML.setAdmin("admin.html");
         System.out.println("Path\t" + pathHTML.getPath());
     }
 }

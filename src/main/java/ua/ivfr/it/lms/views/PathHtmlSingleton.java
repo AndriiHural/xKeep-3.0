@@ -22,6 +22,7 @@ public class PathHtmlSingleton {
     private String top;
     private String menu;
     private String menu_login;
+    private String menu_admin;
     private String bottom;
     private String login;
     private String registration;
@@ -29,6 +30,23 @@ public class PathHtmlSingleton {
     private String note_page;
     private String doshare;
     private String postshare;
+    private String admin;
+
+    public String getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = getPartialHtml(admin);
+    }
+
+    public String getMenu_admin() {
+        return menu_admin;
+    }
+
+    public void setMenu_admin(String menu_admin) {
+        this.menu_admin = getPartialHtml(menu_admin);
+    }
 
     public String getMenu_login() {
         return menu_login;

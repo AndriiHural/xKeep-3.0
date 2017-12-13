@@ -32,6 +32,10 @@ public class IndexView {
         out.println(pathHtmlSingleton.getMenu_login());
     }
 
+    public void outMenu_Admin(PrintWriter out) {
+        out.println(pathHtmlSingleton.getMenu_admin());
+    }
+
     public void outLogin(PrintWriter out) {
         out.println(pathHtmlSingleton.getLogin());
     }
@@ -42,6 +46,10 @@ public class IndexView {
 
     public void outUser(PrintWriter out) {
         out.println(pathHtmlSingleton.getUser());
+    }
+
+    public void outAdmin(PrintWriter out) {
+        out.println(pathHtmlSingleton.getAdmin());
     }
 
     public void doShareNotes(PrintWriter out){
