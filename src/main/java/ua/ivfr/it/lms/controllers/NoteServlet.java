@@ -3,6 +3,7 @@ package ua.ivfr.it.lms.controllers;
 import ua.ivfr.it.lms.dao.NoteDaoImpl;
 import ua.ivfr.it.lms.dao.SharedNotesDao;
 import ua.ivfr.it.lms.dao.SharedNotesDaoImp;
+import ua.ivfr.it.lms.dao.UserDaoImpl;
 import ua.ivfr.it.lms.models.Note;
 import ua.ivfr.it.lms.models.SharedNotes;
 import ua.ivfr.it.lms.models.User;
@@ -21,23 +22,24 @@ import java.util.List;
 
 @WebServlet(name = "NoteServlet", urlPatterns = {"/note/*"})
 public class NoteServlet extends HttpServlet {
+
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
-        String fieldNote = request.getParameter("fieldNote");
+
+        String email = request.getParameter("email");
+        long note_id= Long.parseLong(request.getParameter("note_id"));
+
+
         User user = (User) session.getAttribute("user");
         System.out.println("NoteServlet POST\t" + request.getPathInfo());
         NoteDaoImpl noteDao = new NoteDaoImpl();
         switch (request.getPathInfo()) {
             case "/new":
-                // створення нової закладки при натисканні на кнопку New
-                noteDao.UpdateNote(new Note(
-                        0, fieldNote, "Title2",
-                        0, null, "RED", (int) user.getId()
-                ));
-                response.sendRedirect("/note/");
+
                 break;
             case "/edit":
                 // створення нової закладки при натисканні на кнопку New
@@ -52,8 +54,12 @@ public class NoteServlet extends HttpServlet {
                 response.sendRedirect("/note/");
                 break;
             case "/shared":
-
-                response.sendRedirect("/note/");
+                if(email!=null) {
+                    SharedNotesDaoImp sharedNotesDaoImp = new SharedNotesDaoImp();
+                    UserDaoImpl userDao = new UserDaoImpl();
+                    sharedNotesDaoImp.addSharedNote(note_id, userDao.findUserByEmail(email));
+                    response.sendRedirect("/note/");
+                }
                 break;
             case "/delete":
                 break;
@@ -71,8 +77,18 @@ public class NoteServlet extends HttpServlet {
         NoteDaoImpl note = new NoteDaoImpl();
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        String fieldNote = request.getParameter("fieldNote");
+        System.out.println("NoteServlet GET\t" + request.getPathInfo());
         switch (request.getPathInfo()) {
             case "/new":
+                // створення нової закладки при натисканні на кнопку New
+
+                System.out.println("NoteServlet new\t" + request.getPathInfo());
+                note.UpdateNote(new Note(
+                        0, fieldNote, "Title2",
+                        0, null, "RED", (int) user.getId()
+                ));
+                response.sendRedirect("/note/");
                 break;
             case "/edit":
                 System.out.println("NoteServlet edit");
@@ -94,11 +110,7 @@ public class NoteServlet extends HttpServlet {
             case "/view":
                 break;
             case "/shared":
-                SharedNotesDaoImp sharedNotesDaoImp = new SharedNotesDaoImp();
 
-                sharedNotesDaoImp.addSharedNote(new SharedNotes(9, 1, 1
-                ));
-                response.sendRedirect("/note/");
                 break;
             default:
                 Note_view note_view = new Note_view();

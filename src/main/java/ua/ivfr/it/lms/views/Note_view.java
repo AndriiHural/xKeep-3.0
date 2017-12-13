@@ -24,7 +24,8 @@ public class Note_view {
                     "        <div class=\"note-merg\">\n" +
                     "            <div class=\"bg-note-1 note-size merg-color remove-hover\">\n" +
                     "                <a id=remove-item href=\"/note/delete?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
-                    "                <a id=share-item href=\"/note/shared?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-share-alt\"></span></a>\n" +
+                    "                <a id=share-item href=\"#\" data-toggle=\"modal\" data-target=\"#myModall\"><span class=\"glyphicon glyphicon-share-alt\"></span></a>\n" +
+
                     "                <a href=\"#\" class='onclick'>\n" +
                     "                    <h3>Title #1"+ob_note.getNote_title()+"</h3>\n" +
                     "                    <p>"+ob_note.getNote()+"</p>\n" +
@@ -38,16 +39,43 @@ public class Note_view {
                     "                    </div>\n" +
                     "                    <div class=\"edit_Note\">\n" +
                     "                        <button class=\"btn btn-default  close\">Закрити</button>\n" +
-                    "                        <button type=\"submit\" class=\"btn btn-success\">Зберегти2</button>\n" +
+                    "                        <button type=\"submit\" class=\"btn btn-success\">Зберегти</button>\n" +
                     "                    </div>\n" +
                     "                </form>\n" +
                     "            </div>\n" +
                     "        </div>\n" +
-                    "    </div>");
+                    "    </div>"+
+                    "<!-- Modal -->\n" +
+                    "<div id=\"myModall\" class=\"modal fade\" role=\"dialog\">\n" +
+                    "    <div class=\"modal-dialog\">\n" +
+                    "\n" +
+                    "        <!-- Modal content-->\n" +
+                    "        <div class=\"modal-content\">\n" +
+                    "            <div class=\"modal-header\">\n" +
+                    "                <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n" +
+                    "                <h4 class=\"modal-title\"> Поширення </h4>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"modal-body\">\n" +
+                    "                <form action=\"/note/shared\" method=\"POST\" class=\"form-horizontal\">\n" +
+                    "                <label for=\"email\">Email</label>\n" +
+                    "                <input type=\"text\" class=\"form-control\" id=\"email\" name=\"email\">\n" +
+
+                    "                </form>\n" +
+                    "            </div>\n" +
+                    "            <div class=\"modal-footer\">\n" +
+                    "                    <div class=\"col-xs-6 col-xs-offset-5 col-md-3 col-md-offset-5 col-lg-2 col-lg-offset-5\">\n" +
+                    "                        <button type=\"submit\" class=\"btn btn-default btn-block\" name=\"note_id\" value=\""+ob_note.getId()+"\" >Поширити</button>\n" +
+                    "                    </div>\n" +
+                    "            </div>\n" +
+                    "        </div>\n" +
+                    "\n" +
+                    "    </div>\n" +
+                    "</div>");
         }
 
         out.println("</div>" +
-                "</div><!--/body note-page -->");
+                "</div><!--/body note-page -->"+"\n"
+                );
     }
 
 }

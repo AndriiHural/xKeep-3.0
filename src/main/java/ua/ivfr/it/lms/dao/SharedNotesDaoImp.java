@@ -189,18 +189,17 @@ public class SharedNotesDaoImp implements SharedNotesDao {
     }
 
     @Override
-    public void addSharedNote(SharedNotes sharedNotes) {
+    public void addSharedNote(long note_id,User user) {
         DataSource dataSource = new DataSource();
 
         try (
                 Connection con = dataSource.createConnection();
-                PreparedStatement stmt = (sharedNotes.getId() == 0L) ? con.prepareStatement("INSERT INTO shared_notes (user_id, notes_id) VALUES (?,?)") :
-                        con.prepareStatement("UPDATE shared_notes SET user_id=?, notes_id=? WHERE id=" + sharedNotes.getId());
+                PreparedStatement stmt = con.prepareStatement("INSERT INTO shared_notes (user_id, notes_id) VALUES (?,?)");
         ) {
-            stmt.setLong(1, sharedNotes.getUser_id());
-            stmt.setLong(2, sharedNotes.getNotes_id());
+            stmt.setLong(1, user.getId());
+            stmt.setLong(2, note_id);
 
-            stmt.executeUpdate();
+            stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
