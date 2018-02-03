@@ -223,10 +223,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void editRoleForId(User user,long id) {
+    public void editRoleForId(User user, long id) {
         DataSource dataSource = new DataSource();
         PreparedStatement stmt = null;
-        if(user.getRole()!=3) {
+        if (user.getRole() != 3) {
             try (Connection con = dataSource.createConnection()) {
                 stmt = con.prepareStatement("UPDATE users" +
                         " SET users.role=\"" + "3" + "\" WHERE users.id=\"" + id + "\";");
@@ -237,7 +237,7 @@ public class UserDaoImpl implements UserDao {
                 e.printStackTrace();
             }
         }
-        if(user.getRole()==3){
+        if (user.getRole() == 3) {
             try (Connection con = dataSource.createConnection()) {
                 stmt = con.prepareStatement("UPDATE users" +
                         " SET users.role=\"" + "2" + "\" WHERE users.id=\"" + id + "\";");
@@ -254,15 +254,15 @@ public class UserDaoImpl implements UserDao {
     public void editEmailPasswordNameForId(User user, String email, String password, String name) {
         DataSource dataSource = new DataSource();
         PreparedStatement stmt = null;
-            try (Connection con = dataSource.createConnection()) {
-                stmt = con.prepareStatement("UPDATE users" +
-                        " SET users.email=\"" + email  + "\",users.password=\"" + password  + "\",users.name=\""+name+"\" WHERE users.email=\"" + user.getEmail() + "\";");
+        try (Connection con = dataSource.createConnection()) {
+            stmt = con.prepareStatement("UPDATE users" +
+                    " SET users.email=\"" + email + "\",users.password=\"" + password + "\",users.name=\"" + name + "\" WHERE users.email=\"" + user.getEmail() + "\";");
 
-                stmt.execute();
+            stmt.execute();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 }

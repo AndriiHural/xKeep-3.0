@@ -1,7 +1,7 @@
 package ua.ivfr.it.lms.models;
 
 /**
- *  Клас який описує репост нотатки
+ * Клас який описує репост нотатки
  */
 public class SharedNotes {
     private long id;         // id
@@ -16,6 +16,7 @@ public class SharedNotes {
         this.user_id = user_id;
         this.notes_id = notes_id;
     }
+
     public SharedNotes(long user_id, long notes_id) {
         this.id = 0L;
         this.user_id = user_id;

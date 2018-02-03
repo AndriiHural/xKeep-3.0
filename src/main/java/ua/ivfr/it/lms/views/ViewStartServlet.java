@@ -1,7 +1,7 @@
 package ua.ivfr.it.lms.views;
 
 public class ViewStartServlet {
-    public static String getTopPage(){
+    public static String getTopPage() {
         return "<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "  <head>\n" +
@@ -22,7 +22,8 @@ public class ViewStartServlet {
                 "  </head>\n" +
                 "  <body>";
     }
-    public static String getBootomPage(){
+
+    public static String getBootomPage() {
         return " <!-- jQuery (потрібно для JavaScript плагінів Bootstrap) -->\n" +
                 "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"></script>\n" +
                 "    <!-- Підключення мінімізованої збірки всіх плагінів jQuery. Можна підключати додаткові плагіни, якщо потрібно -->\n" +
@@ -31,7 +32,7 @@ public class ViewStartServlet {
                 "</html>";
     }
 
-    public static String getMenu(){
+    public static String getMenu() {
         return "<nav class=\"navbar navbar-inverse navbar-top\" role=\"navigation\">\n" +
                 "      <div class=\"container\">\n" +
                 "        <div class=\"navbar-header\">\n" +

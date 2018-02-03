@@ -29,9 +29,9 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         UserDaoImpl userDao = new UserDaoImpl();
 
-        User user = userDao.findUserByEmailPassword(email,password);
+        User user = userDao.findUserByEmailPassword(email, password);
         //якщо емейл є в БД, змінна user буде посилатись на об'єкт класу User, інакше дорівнюватиме null
-        if(user != null) {
+        if (user != null) {
             //записав об'єкт користувача в сесію, щоб перевіряти в інших сервлетах чи зареєстрований користувач
             session.setAttribute("user", user);
             out.write("<div class=\"panel panel-default\">\n" +
@@ -48,8 +48,7 @@ public class LoginServlet extends HttpServlet {
                     "  </table>\n" +
                     "</div>");
             response.sendRedirect("/note/");
-        }
-        else {
+        } else {
             response.sendRedirect("/login");
         }
     }

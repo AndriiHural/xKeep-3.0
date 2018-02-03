@@ -13,14 +13,20 @@ import java.util.List;
 public interface SharedNotesDao {
     /**
      * Повернути користувачів що розшарюють заміку
+     *
      * @param id замітки
      * @return колекція із користувачів, що призначені до замітки яка має значення id
      */
     List<User> getUsersByNoteId(long id);
+
     List<Note> getNoteByUserId(long id); // Вивід пошириних нотаток
-    boolean deleteShareNote(long user_id,int note_id);
-    void addSharedNote(long note_id,User user); //
+
+    boolean deleteShareNote(long user_id, int note_id);
+
+    void addSharedNote(long note_id, User user); //
+
     ArrayList<User> viewUser(int user_id);   //пошук мейла користувача
+
     ArrayList<SharedNotes> getId(long id); // id- поширеної нотатки
 
 }

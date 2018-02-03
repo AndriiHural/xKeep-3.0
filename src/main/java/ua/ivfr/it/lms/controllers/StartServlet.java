@@ -28,8 +28,8 @@ public class StartServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             out.write("<H1>Ввійдіть або зареєструйтесь</H1>");
-        }else {
-            out.write("<h2>You "+user.toString()+"</h2>");
+        } else {
+            out.write("<h2>You " + user.toString() + "</h2>");
         }
     }
 

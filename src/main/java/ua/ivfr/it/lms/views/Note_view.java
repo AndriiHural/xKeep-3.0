@@ -23,19 +23,19 @@ public class Note_view {
             out.println("<div id=replaceID class=\"col-xs-12 rotate col-md-3 col-lg-3 col-sm-3\">\n" +
                     "        <div class=\"note-merg\">\n" +
                     "            <div class=\"bg-note-1 note-size merg-color remove-hover\">\n" +
-                    "                <a id=remove-item href=\"/note/delete?id="+ob_note.getId()+"\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
+                    "                <a id=remove-item href=\"/note/delete?id=" + ob_note.getId() + "\"><span class=\"glyphicon glyphicon-remove\"></span></a>\n" +
                     "                <a id=share-item href=\"#\" data-toggle=\"modal\" data-target=\"#myModall\"><span class=\"glyphicon glyphicon-share-alt\"></span></a>\n" +
 
                     "                <a href=\"#\" class='onclick'>\n" +
-                    "                    <h3>Title #1"+ob_note.getNote_title()+"</h3>\n" +
-                    "                    <p>"+ob_note.getNote()+"</p>\n" +
+                    "                    <h3>Title #1" + ob_note.getNote_title() + "</h3>\n" +
+                    "                    <p>" + ob_note.getNote() + "</p>\n" +
                     "                    \n" +
                     "                </a>\n" +
                     "                <form action=\"/note/edit\" method=\"GET\" class=\"form_size\">\n" +
                     "                    <div class=\"edit_size90\">\n" +
-                    "                        <input type=\"text\" class=\"form-control\" value=\""+ob_note.getNote_title()+"\" name=\"title\">\n" +
-                    "                        <input type=\"hidden\" class=\"form-control\" value=\""+ob_note.getId()+"\" name=\"id\">\n" +
-                    "                        <textarea class=\"form-control\" rows=\"3\" name=\"noteText\">"+ob_note.getNote()+"</textarea>\n" +
+                    "                        <input type=\"text\" class=\"form-control\" value=\"" + ob_note.getNote_title() + "\" name=\"title\">\n" +
+                    "                        <input type=\"hidden\" class=\"form-control\" value=\"" + ob_note.getId() + "\" name=\"id\">\n" +
+                    "                        <textarea class=\"form-control\" rows=\"3\" name=\"noteText\">" + ob_note.getNote() + "</textarea>\n" +
                     "                    </div>\n" +
                     "                    <div class=\"edit_Note\">\n" +
                     "                        <button class=\"btn btn-default  close\">Закрити</button>\n" +
@@ -44,7 +44,7 @@ public class Note_view {
                     "                </form>\n" +
                     "            </div>\n" +
                     "        </div>\n" +
-                    "    </div>"+
+                    "    </div>" +
                     "<!-- Modal -->\n" +
                     "<div id=\"myModall\" class=\"modal fade\" role=\"dialog\">\n" +
                     "    <div class=\"modal-dialog\">\n" +
@@ -64,7 +64,7 @@ public class Note_view {
                     "            </div>\n" +
                     "            <div class=\"modal-footer\">\n" +
                     "                    <div class=\"col-xs-6 col-xs-offset-5 col-md-3 col-md-offset-5 col-lg-2 col-lg-offset-5\">\n" +
-                    "                        <button type=\"submit\" class=\"btn btn-default btn-block\" name=\"note_id\" value=\""+ob_note.getId()+"\" >Поширити</button>\n" +
+                    "                        <button type=\"submit\" class=\"btn btn-default btn-block\" name=\"note_id\" value=\"" + ob_note.getId() + "\" >Поширити</button>\n" +
                     "                    </div>\n" +
                     "            </div>\n" +
                     "        </div>\n" +
@@ -74,8 +74,8 @@ public class Note_view {
         }
 
         out.println("</div>" +
-                "</div><!--/body note-page -->"+"\n"
-                );
+                "</div><!--/body note-page -->" + "\n"
+        );
     }
 
 }

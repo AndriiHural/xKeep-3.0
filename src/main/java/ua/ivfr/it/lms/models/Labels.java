@@ -1,7 +1,7 @@
 package ua.ivfr.it.lms.models;
 
 /**
- *  Клас який описує репост нотатки
+ * Клас який описує репост нотатки
  */
 public class Labels {
     private int id;

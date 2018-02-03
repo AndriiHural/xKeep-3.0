@@ -30,12 +30,13 @@ public class RegistrationServlet extends HttpServlet {
 
         User user = userDao.findUserByEmail(email);
         //якщо емейл є в БД, змінна user буде посилатись на об'єкт класу User, інакше дорівнюватиме null
-        if(user != null) {
+        if (user != null) {
             //записав об'єкт користувача в сесію, щоб перевіряти в інших сервлетах чи зареєстрований користувач
             out.write("<H1>З таким мейлом вже існує</H1>");
-        } if(user==null) {
-            userDao.creatUser(email,password,name);
-            user=userDao.findUserByEmail(email);
+        }
+        if (user == null) {
+            userDao.creatUser(email, password, name);
+            user = userDao.findUserByEmail(email);
             //записав об'єкт користувача в сесію, щоб перевіряти в інших сервлетах чи зареєстрований користувач
             session.setAttribute("user", user);
             out.write("<div class=\"panel panel-default\">\n" +

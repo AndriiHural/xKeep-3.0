@@ -63,12 +63,14 @@ public class PathHtmlSingleton {
     public void setNote(String note) {
         this.note = getPartialHtml(note);
     }
+
     private String note;
 
 
     public String getNote_page() {
         return note_page;
     }
+
     public void setNote_page(String note_page) {
         this.note_page = getPartialHtml(note_page);
     }

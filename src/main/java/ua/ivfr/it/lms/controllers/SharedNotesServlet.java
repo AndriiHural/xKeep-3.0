@@ -44,14 +44,14 @@ public class SharedNotesServlet extends HttpServlet {
 
         SharedNotesDaoImp sharedNotesDao = new SharedNotesDaoImp();
         UserDaoImpl userDao = new UserDaoImpl();
-        if(user!=null) {
+        if (user != null) {
             sharedNotesView.outPageNoteShare(out, user);
-          //  userDao.fintUserById(user.getId());
+            //  userDao.fintUserById(user.getId());
         }
         switch (request.getPathInfo()) {
             case "/delete":
                 int id = Integer.parseInt(request.getParameter("id"));
-                sharedNotesDao.deleteShareNote(user.getId(),id);
+                sharedNotesDao.deleteShareNote(user.getId(), id);
                 response.sendRedirect("/shared-notes/");
                 break;
             default:
@@ -59,6 +59,6 @@ public class SharedNotesServlet extends HttpServlet {
                 break;
         }
 
-        }
     }
+}
 

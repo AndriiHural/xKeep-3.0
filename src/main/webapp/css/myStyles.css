@@ -1,52 +1,65 @@
-body{
+body {
     background: #b8bea7;;
 }
-.fild-marg{
+
+.fild-marg {
     margin-bottom: 10px;
 }
-.bg-note-1{
+
+.bg-note-1 {
     /*background: #ffc;*/
 }
-.myTextDec{
+
+.myTextDec {
     word-wrap: break-word;
 }
-.form_size{
+
+.form_size {
     height: 100%;
 }
-.edit_size90{
+
+.edit_size90 {
     height: 90%;
     margin-bottom: 5px;
 }
-.edit_size90 input{
+
+.edit_size90 input {
     height: 35px;
 }
-.edit_size90 textarea{
+
+.edit_size90 textarea {
     height: 90%;
 }
-.edit_Note{
+
+.edit_Note {
     height: 15%;
 }
+
 .rotate .note-merg.red {
     background: #eee;
 }
+
 .rotate {
     padding-bottom: 30px;
 }
+
 .note-size {
-    height:200px;
-    width:100%;
+    height: 200px;
+    width: 100%;
     padding: 10px;
     position: relative;
     overflow: hidden;
 }
+
 .note-merg input {
     display: none;
 }
+
 .note-merg textarea {
     display: none;
 }
 
-.note-merg .edit_Note{
+.note-merg .edit_Note {
     display: none;
 }
 
@@ -61,20 +74,24 @@ div.rotate.open .note-merg {
     z-index: 20;
     background: #000000b5;
 }
-div.rotate.open .note-merg input{
+
+div.rotate.open .note-merg input {
     display: block;
 }
+
 div.rotate.open .note-merg textarea {
     display: block;
 }
-div.rotate.open .note-merg .onclick{
+
+div.rotate.open .note-merg .onclick {
     display: none;
 }
 
 div.rotate.open .note-merg .edit_Note {
     display: block;
 }
-div.rotate.open .note-merg #remove-item{
+
+div.rotate.open .note-merg #remove-item {
     display: none;
 }
 
@@ -86,94 +103,108 @@ div.rotate.open .note-merg .merg-color {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .close {
     z-index: 10000 !important;
 }
-.note-merg{
+
+.note-merg {
     /*margin:10px 13px;*/
     padding: 0px 0px;
-    height:200px;
+    height: 200px;
     /*width:290px;*/
     /*float: left;*/
     margin: 10px;
-    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
 }
-.bg-note-2{
-    background:#cfc;
+
+.bg-note-2 {
+    background: #cfc;
 }
-.bg-note-3{
-    background:#ccf;
+
+.bg-note-3 {
+    background: #ccf;
 }
-#remove-item{
+
+#remove-item {
     position: absolute;
     top: 8px;
     right: 8px;
     display: none;
 }
-#share-item{
+
+#share-item {
     position: absolute;
     top: 10px;
     right: 28px;
     display: none;
 }
-.remove-hover:hover #remove-item{
+
+.remove-hover:hover #remove-item {
     display: block;
 }
-.remove-hover:hover #share-item{
+
+.remove-hover:hover #share-item {
     display: block;
 }
-.row-margen{
+
+.row-margen {
 
 }
-h3{
+
+h3 {
     padding: 10px 10px;
     margin: 0px;
 }
 
 .rotate .note-merg {
-    -o-transform:rotate(4deg);
-    -webkit-transform:rotate(4deg);
-    -moz-transform:rotate(4deg);
-    position:relative;
-    top:5px;
+    -o-transform: rotate(4deg);
+    -webkit-transform: rotate(4deg);
+    -moz-transform: rotate(4deg);
+    position: relative;
+    top: 5px;
 
 }
+
 .rotate .note-merg .merg-color {
     background: #ffc;
 }
+
 .rotate:nth-child(3n) .note-merg,
 .rotate:first-child .note-merg {
-    -o-transform:rotate(-3deg);
-    -webkit-transform:rotate(-3deg);
-    -moz-transform:rotate(-3deg);
-    position:relative;
-    top:-5px;
+    -o-transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    position: relative;
+    top: -5px;
 
 }
 
 .rotate:nth-child(3n) .note-merg .merg-color,
 .rotate:first-child .note-merg .merg-color {
-    background:#cfc;
+    background: #cfc;
 }
 
 .rotate:nth-child(5n) .note-merg {
-    -o-transform:rotate(5deg);
-    -webkit-transform:rotate(5deg);
-    -moz-transform:rotate(5deg);
-    position:relative;
-    top:-10px;
+    -o-transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    position: relative;
+    top: -10px;
 
 }
+
 .rotate:nth-child(5n) .note-merg .merg-color {
-    background:#ccf;
+    background: #ccf;
 }
-.rotate .note-merg:hover, .note-merg:focus{
-    -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
-    -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
-    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+
+.rotate .note-merg:hover, .note-merg:focus {
+    -moz-box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+    -webkit-box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
+    box-shadow: 10px 10px 7px rgba(0, 0, 0, .7);
     -webkit-transform: scale(1.25);
     -moz-transform: scale(1.25);
     -o-transform: scale(1.25);
-    position:relative;
-    z-index:5;
+    position: relative;
+    z-index: 5;
 }

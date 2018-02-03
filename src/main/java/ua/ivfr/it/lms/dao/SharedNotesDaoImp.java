@@ -99,9 +99,9 @@ public class SharedNotesDaoImp implements SharedNotesDao {
     public ArrayList<SharedNotes> getId(long id) {
         DataSource dataSource = new DataSource();
         try (Connection con = dataSource.createConnection();
-        Statement stmt= con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT* FROM shared_notes WHERE user_id=" + id + ";")
-        ){
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT* FROM shared_notes WHERE user_id=" + id + ";")
+        ) {
             ArrayList<SharedNotes> sharedNotess = new ArrayList<>();
             while (rs.next()) {
                 SharedNotes sharedNotes = new SharedNotes(
@@ -113,24 +113,25 @@ public class SharedNotesDaoImp implements SharedNotesDao {
                 sharedNotess.add(sharedNotes);
             }
             return sharedNotess;
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
     public long getId1(long id) {
         DataSource dataSource = new DataSource();
         try (Connection con = dataSource.createConnection();
-             Statement stmt= con.createStatement();
+             Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT* FROM shared_notes WHERE user_id=" + id + ";")
-        ){
+        ) {
 
             SharedNotes sharedNotes = new SharedNotes(
-                        rs.getLong("id"),
-                        rs.getLong("user_id"),
-                        rs.getLong("notes_id"));
+                    rs.getLong("id"),
+                    rs.getLong("user_id"),
+                    rs.getLong("notes_id"));
             return sharedNotes.getId();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return 0;
@@ -172,14 +173,14 @@ public class SharedNotesDaoImp implements SharedNotesDao {
 
 
     @Override
-    public boolean deleteShareNote(long user_id,int notes_id) {
+    public boolean deleteShareNote(long user_id, int notes_id) {
         DataSource dataSource = new DataSource();
         PreparedStatement stmt = null;
         try (Connection con = dataSource.createConnection()) {
             stmt = con.prepareStatement(
                     "DELETE FROM shared_notes WHERE user_id=? and notes_id=?");
             stmt.setLong(1, user_id);
-            stmt.setInt(2,notes_id);
+            stmt.setInt(2, notes_id);
             stmt.execute();
             return true;
         } catch (SQLException e) {
@@ -189,7 +190,7 @@ public class SharedNotesDaoImp implements SharedNotesDao {
     }
 
     @Override
-    public void addSharedNote(long note_id,User user) {
+    public void addSharedNote(long note_id, User user) {
         DataSource dataSource = new DataSource();
 
         try (

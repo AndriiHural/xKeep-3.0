@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public interface NoteDao {
     /**
      * if id =0 create new Note in table
-     *    id >0 update existing Note
-     * */
+     * id >0 update existing Note
+     */
     Note UpdateNote(Note note);
+
     boolean deleteNote(int note_id);
+
     ArrayList<Note> viewNotes(int user_id);
 }

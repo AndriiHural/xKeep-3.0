@@ -24,7 +24,7 @@ public class UserServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
-        UserDaoImpl userDao =new UserDaoImpl();
+        UserDaoImpl userDao = new UserDaoImpl();
         User user = (User) session.getAttribute("user");
 
         String name = request.getParameter("inputName");
@@ -32,17 +32,17 @@ public class UserServlet extends HttpServlet {
         String passwordNew = request.getParameter("inputPasswordNew");
         String passwordNew2 = request.getParameter("inputPasswordNew2");
 
-        if(name!=null){
-            userDao.editNameUser(user.getEmail(),name);
+        if (name != null) {
+            userDao.editNameUser(user.getEmail(), name);
             user.setName(name);
         }
 
-        if(password!=null&&passwordNew!=null&&passwordNew.equals(passwordNew2)){
-            userDao.editPasswordUser(user,password,passwordNew);
+        if (password != null && passwordNew != null && passwordNew.equals(passwordNew2)) {
+            userDao.editPasswordUser(user, password, passwordNew);
             out.write("<H1>Пароль змінено</H1>");
             user.setPassword(passwordNew);
+        } else {
         }
-        else{}
 
         response.sendRedirect("/user/");
     }
@@ -54,16 +54,16 @@ public class UserServlet extends HttpServlet {
 
         User user = (User) session.getAttribute("user");
 
-        out.write("<h2>Ваше ім'я: "+user.getName()+"</h2>");
-        out.write("<h2>Ваш email: "+user.getEmail()+"</h2>");
+        out.write("<h2>Ваше ім'я: " + user.getName() + "</h2>");
+        out.write("<h2>Ваш email: " + user.getEmail() + "</h2>");
 
 
         IndexView indexView = new IndexView();
-        UserDaoImpl userDao=new UserDaoImpl();
+        UserDaoImpl userDao = new UserDaoImpl();
         indexView.outUser(out);
 
         switch (request.getPathInfo()) {
-            case"/edit/password":
+            case "/edit/password":
                 out.write("<H1>kffhk</H1>");
                 break;
             case "/delete":

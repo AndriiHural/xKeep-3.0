@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 /**
  * Головний фільтр для виводу статичних частин html сторінк
  */
-@WebFilter(filterName = "IndexFilter", value = {"/", "/login", "/user/*", "/register","/note/*","/shared-notes/*","/admin/*"})
+@WebFilter(filterName = "IndexFilter", value = {"/", "/login", "/user/*", "/register", "/note/*", "/shared-notes/*", "/admin/*"})
 public class IndexFilter implements Filter {
     public void destroy() {
     }
@@ -52,11 +52,10 @@ public class IndexFilter implements Filter {
         indexView.outTopPage(out);
         if (user == null) {
             indexView.outMenu(out);
-        }else {
-            if(user.getRole()==1){
-            indexView.outMenu_Admin(out);
-            }
-            else {
+        } else {
+            if (user.getRole() == 1) {
+                indexView.outMenu_Admin(out);
+            } else {
                 indexView.outMenu_Login(out);
             }
         }

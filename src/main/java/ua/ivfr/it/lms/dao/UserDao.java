@@ -11,18 +11,29 @@ import java.util.ArrayList;
 public interface UserDao {
     /**
      * Шукає користувача за email
+     *
      * @param email має бути із форми логіна
      * @return class User or null
      */
     User findUserByEmail(String email);
-    User findUserByEmailPassword(String email,String password);
+
+    User findUserByEmailPassword(String email, String password);
+
     ArrayList<User> allUser();
-    User creatUser(String email,String password,String name);
+
+    User creatUser(String email, String password, String name);
+
     User deleteUser(String email);
-    User editNameUser(String email,String name);
-    User editPasswordUser(User user,String password, String passwordNew);
+
+    User editNameUser(String email, String name);
+
+    User editPasswordUser(User user, String password, String passwordNew);
+
     String fintUserById(long id);
+
     User findUserByIdUser(long id);
-    void editRoleForId(User user,long id);
-    void editEmailPasswordNameForId(User user,String email,String password,String name);
+
+    void editRoleForId(User user, long id);
+
+    void editEmailPasswordNameForId(User user, String email, String password, String name);
 }

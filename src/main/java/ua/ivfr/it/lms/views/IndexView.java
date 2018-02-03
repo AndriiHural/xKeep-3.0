@@ -52,11 +52,11 @@ public class IndexView {
         out.println(pathHtmlSingleton.getAdmin());
     }
 
-    public void doShareNotes(PrintWriter out){
+    public void doShareNotes(PrintWriter out) {
         out.println(pathHtmlSingleton.getDoshare());
     }
 
-    public void doPostShareNotes(PrintWriter out){
+    public void doPostShareNotes(PrintWriter out) {
         out.println(pathHtmlSingleton.getPostshare());
     }
     // виводить поле для вводу тексту нотатки/заголовка

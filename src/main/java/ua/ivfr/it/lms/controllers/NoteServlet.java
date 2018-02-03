@@ -31,7 +31,7 @@ public class NoteServlet extends HttpServlet {
 
 
         String email = request.getParameter("email");
-        long note_id= Long.parseLong(request.getParameter("note_id"));
+        long note_id = Long.parseLong(request.getParameter("note_id"));
 
 
         User user = (User) session.getAttribute("user");
@@ -54,7 +54,7 @@ public class NoteServlet extends HttpServlet {
                 response.sendRedirect("/note/");
                 break;
             case "/shared":
-                if(email!=null) {
+                if (email != null) {
                     SharedNotesDaoImp sharedNotesDaoImp = new SharedNotesDaoImp();
                     UserDaoImpl userDao = new UserDaoImpl();
                     sharedNotesDaoImp.addSharedNote(note_id, userDao.findUserByEmail(email));
